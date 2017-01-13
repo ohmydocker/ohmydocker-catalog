@@ -14,7 +14,7 @@
     description: "Work volume to save jenkins data"
     label: "Work volume:"
     required: true
-    default: "/var/lib/docker/jenkins-ci"
+    default: "JENKINS"
     type: "string"
   - variable: "plugins"
     type: "multiline"
