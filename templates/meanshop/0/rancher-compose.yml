@@ -1,6 +1,6 @@
 .catalog:
   name: "Meanshop"
-  version: "0.1.0"
+  version: "0.1.1"
   description: "Library service powered by Meanshop"
   uuid: meanshop-0
   minimum_rancher_version: v0.51.0
