@@ -11,12 +11,6 @@
         required: true
         default: ""
         type: "string"
-      - variable: "PORT"
-        description: "main PORT to associate with this server"
-        label: "PORT"
-        required: true
-        default: "2302"
-        type: "string"
       - variable: "VOLUME_DRIVER"
         description: "The VOLUME driver to associate with this server (convoy-nfs,convoy-efs,convoy-ebs)"
         label: "VOLUME Driver"
