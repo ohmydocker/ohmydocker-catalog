@@ -1,0 +1,15 @@
+version: '2'
+services:
+  kanboardredmine:
+    image: joshuacox/kanboard-redmine
+    labels:
+      io.rancher.container.hostname_override: container_name
+      io.rancher.container.pull_image: always
+      traefik.enable: true
+      traefik.domain: ${KANBOARDREDMINE_HOST}
+      traefik.port: ${PORT}
+    volume_driver: ${VOLUME_DRIVER}
+    volumes:
+      - ${VOLUME_NAME}:/var/www/app/data
+    ports:
+      - "${PORT}:80"
