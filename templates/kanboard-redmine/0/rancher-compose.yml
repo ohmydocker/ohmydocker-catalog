@@ -1,6 +1,6 @@
 .catalog:
   name: "Kanboard-Redmine"
-  version: "0.1.0"
+  version: "0.1.1"
   description: "Kanboard Redmine"
   uuid: kanboardredmine-0
   minimum_rancher_version: v0.51.0
