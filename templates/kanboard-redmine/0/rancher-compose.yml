@@ -21,7 +21,13 @@
         description: "The VOLUME name to associate with this server"
         label: "VOLUME Name"
         required: true
-        default: "KANBOARDREDMINE"
+        default: "KANBOARD_REDMINE"
+        type: "string"
+      - variable: "PORT"
+        description: "The Port to associate with this server"
+        label: "Port"
+        required: true
+        default: "4080"
         type: "string"
 
 kanboardredmine:
