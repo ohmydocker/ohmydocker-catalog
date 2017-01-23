@@ -1,0 +1,44 @@
+.catalog:
+  name: "Moviemasher"
+  version: "0.1.1"
+  description: "Library service powered by Moviemasher"
+  uuid: moviemasher-0
+  minimum_rancher_version: v0.51.0
+  questions:
+      - variable: "MOVIEMASHER_HOST"
+        description: "Hostname to use for the MOVIEMASHER server"
+        label: "MOVIEMASHER Hostname"
+        required: true
+        default: ""
+        type: "string"
+      - variable: "VOLUME_DRIVER"
+        description: "The VOLUME driver to associate with this server (convoy-nfs,convoy-efs,convoy-ebs)"
+        label: "VOLUME Driver"
+        required: true
+        default: "convoy-nfs"
+        type: "string"
+      - variable: "VOLUME_NAME"
+        description: "The VOLUME name to associate with this server"
+        label: "VOLUME Name"
+        required: true
+        default: "MOVIEMASHER"
+        type: "string"
+      - variable: "DB_VOLUME_NAME"
+        description: "The VOLUME name to associate with the DB of this server"
+        label: "DB VOLUME Name"
+        required: true
+        default: "MOVIEMASHER_DB"
+        type: "string"
+
+angular-moviemasher:
+  scale: 1
+  retain_ip: true
+  health_check:
+    port: 80
+    interval: 30000
+    unhealthy_threshold: 3
+    strategy: recreate
+    response_timeout: 2000
+    healthy_threshold: 2
+moviemacher_rb:
+  scale: 1
