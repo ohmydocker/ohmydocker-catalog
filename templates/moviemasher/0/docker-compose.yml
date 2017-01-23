@@ -4,6 +4,7 @@ services:
     image: moviemasher/angular-moviemasher:latest
     labels:
       io.rancher.container.pull_image: always
+      io.rancher.sidekicks: moviemasher-data
       traefik.enable: true
       traefik.domain: ${MOVIEMASHER_HOST}
       traefik.port: ${PORT}
@@ -18,9 +19,21 @@ services:
   moviemasherrb:
     image: moviemasher/moviemasher.rb:latest
     labels:
-      io.rancher.sidekicks: moviemasher
+      io.rancher.sidekicks: moviemasher-data
       io.rancher.container.pull_image: always
     volumes_from:
       - moviemasher
     command: process_loop
     tty: true
+  moviemasher-data:
+    image: busybox
+    command: /bin/true
+    labels:
+      io.rancher.container.pull_image: always
+      io.rancher.container.start_once: true
+    volume_driver: ${VOLUME_DRIVER}
+    volumes:
+      - ${VOLUME_NAME}:/tmp/moviemasher/log
+      - ${VOLUME_NAME}:/tmp/moviemasher/queue
+      - ${VOLUME_NAME}:/tmp/moviemasher/temporary
+      - ${VOLUME_NAME}:/var/www/html
