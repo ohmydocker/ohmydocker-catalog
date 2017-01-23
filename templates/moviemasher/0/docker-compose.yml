@@ -1,6 +1,6 @@
 version: '2'
 services:
-  angularmoviemasher:
+  moviemasher:
     image: moviemasher/angular-moviemasher:latest
     labels:
       io.rancher.container.pull_image: always
@@ -21,6 +21,6 @@ services:
       io.rancher.sidekicks: angularmoviemasher
       io.rancher.container.pull_image: always
     volumes_from:
-      - angular_moviemasher
+      - moviemasher
     command: process_loop
     tty: true
