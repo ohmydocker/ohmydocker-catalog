@@ -1,6 +1,6 @@
 .catalog:
   name: "Moviemasher"
-  version: "0.1.0"
+  version: "0.1.2"
   description: "Library service powered by Moviemasher"
   uuid: moviemasher-0
   minimum_rancher_version: v0.51.0
@@ -23,6 +23,12 @@
         required: true
         default: "MOVIEMASHER"
         type: "string"
+      - variable: "PORT"
+        type: "int"
+        label: "Port Number"
+        description: "Which port should MovieMasher listen on?"
+        default: 11080
+        required: true
 
 angular-moviemasher:
   scale: 1
