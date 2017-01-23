@@ -18,7 +18,7 @@ services:
   moviemasherrb:
     image: moviemasher/moviemasher.rb:latest
     labels:
-      io.rancher.sidekicks: angular_moviemasher
+      io.rancher.sidekicks: angularmoviemasher
       io.rancher.container.pull_image: always
     volumes_from:
       - angular_moviemasher
