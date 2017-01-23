@@ -3,7 +3,6 @@ services:
   angular_moviemasher:
     image: moviemasher/angular-moviemasher:latest
     labels:
-      io.rancher.container.hostname_override: container_name
       io.rancher.container.pull_image: always
       traefik.enable: true
       traefik.domain: ${MOVIEMASHER_HOST}
