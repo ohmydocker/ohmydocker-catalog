@@ -1,6 +1,6 @@
 .catalog:
   name: "Moviemasher"
-  version: "0.1.1"
+  version: "0.1.0"
   description: "Library service powered by Moviemasher"
   uuid: moviemasher-0
   minimum_rancher_version: v0.51.0
@@ -22,12 +22,6 @@
         label: "VOLUME Name"
         required: true
         default: "MOVIEMASHER"
-        type: "string"
-      - variable: "DB_VOLUME_NAME"
-        description: "The VOLUME name to associate with the DB of this server"
-        label: "DB VOLUME Name"
-        required: true
-        default: "MOVIEMASHER_DB"
         type: "string"
 
 angular-moviemasher:
