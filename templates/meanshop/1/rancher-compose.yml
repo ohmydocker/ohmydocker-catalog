@@ -1,5 +1,5 @@
 .catalog:
-  name: "Meanshop"
+  name: "meanshop"
   version: "0.1.1"
   description: "Library service powered by Meanshop"
   uuid: meanshop-0
