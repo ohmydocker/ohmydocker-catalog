@@ -1,6 +1,6 @@
 version: '2'
 services:
-  angular_moviemasher:
+  angularmoviemasher:
     image: moviemasher/angular-moviemasher:latest
     labels:
       io.rancher.container.pull_image: always
@@ -15,7 +15,7 @@ services:
       - ${VOLUME_NAME}:/var/www/html
     ports:
       - "${PORT}:80"
-  moviemasher_rb:
+  moviemasherrb:
     image: moviemasher/moviemasher.rb:latest
     labels:
       io.rancher.sidekicks: angular_moviemasher
