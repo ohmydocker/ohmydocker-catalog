@@ -1,6 +1,6 @@
 .catalog:
   name: "moviemasher"
-  version: "0.1.6"
+  version: "0.1.7"
   description: "Library service powered by Moviemasher"
   uuid: moviemasher-0
   minimum_rancher_version: v0.51.0
@@ -30,7 +30,7 @@
         default: 11080
         required: true
 
-angular-moviemasher:
+angularmoviemasher:
   scale: 1
   retain_ip: true
   health_check:
@@ -40,5 +40,5 @@ angular-moviemasher:
     strategy: recreate
     response_timeout: 2000
     healthy_threshold: 2
-moviemacher_rb:
+moviemacherrb:
   scale: 1
