@@ -58,5 +58,5 @@ moviemasher:
     strategy: recreate
     response_timeout: 2000
     healthy_threshold: 2
-moviemacherrb:
+moviemasherrb:
   scale: 1
