@@ -1,0 +1,62 @@
+.catalog:
+  name: "moviemasher"
+  version: "0.1.14"
+  description: "Library service powered by Moviemasher"
+  uuid: moviemasher-0
+  minimum_rancher_version: v0.51.0
+  questions:
+      - variable: "MOVIEMASHER_HOST"
+        description: "Hostname to use for the MOVIEMASHER server"
+        label: "MOVIEMASHER Hostname"
+        required: true
+        default: "moviemasher.example.com"
+        type: "string"
+      - variable: "VOLUME_DRIVER"
+        description: "The VOLUME driver to associate with this server (convoy-nfs,convoy-efs,convoy-ebs)"
+        label: "VOLUME Driver"
+        required: true
+        default: "convoy-nfs"
+        type: "string"
+      - variable: "VOLUME_NAME"
+        description: "The VOLUME name to associate with this server"
+        label: "VOLUME Name"
+        required: true
+        default: "MOVIEMASHER"
+        type: "string"
+      - variable: "LOG_VOLUME_NAME"
+        description: "The Log VOLUME name to associate with this server"
+        label: "Log VOLUME Name"
+        required: true
+        default: "MOVIEMASHER_LOG"
+        type: "string"
+      - variable: "Q_VOLUME_NAME"
+        description: "The Queue VOLUME name to associate with this server"
+        label: "Q VOLUME Name"
+        required: true
+        default: "MOVIEMASHER_Q"
+        type: "string"
+      - variable: "TMP_VOLUME_NAME"
+        description: "The TMP VOLUME name to associate with this server"
+        label: "TMP VOLUME Name"
+        required: true
+        default: "MOVIEMASHER_TMP"
+        type: "string"
+      - variable: "PORT"
+        type: "int"
+        label: "Port Number"
+        description: "Which port should MovieMasher listen on?"
+        default: 11080
+        required: true
+
+moviemasher:
+  scale: 1
+  retain_ip: true
+  health_check:
+    port: 80
+    interval: 30000
+    unhealthy_threshold: 3
+    strategy: recreate
+    response_timeout: 2000
+    healthy_threshold: 2
+moviemasherrb:
+  scale: 1
