@@ -1,7 +1,7 @@
 version: '2'
 services:
   moviemasher:
-    image: joshucox/angular-moviemasher:latest
+    image: joshuacox/angular-moviemasher:latest
     labels:
       io.rancher.container.pull_image: always
       io.rancher.sidekicks: moviemasherdata
