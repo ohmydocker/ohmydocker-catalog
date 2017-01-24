@@ -1,6 +1,6 @@
 .catalog:
   name: "moviemasher"
-  version: "0.1.14"
+  version: "0.1.15"
   description: "Library service powered by Moviemasher"
   uuid: moviemasher-0
   minimum_rancher_version: v0.51.0
