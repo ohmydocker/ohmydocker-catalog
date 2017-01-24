@@ -34,6 +34,8 @@ services:
     volume_driver: ${VOLUME_DRIVER}
     volumes:
       - ${VOLUME_NAME}:/var/www/html
+      - ${MOV_VOLUME_NAME}:/var/www/html/user-media
+      - ${CONFIG_VOLUME_NAME}:/var/www/config
       - ${LOG_VOLUME_NAME}:/tmp/moviemasher/log
       - ${Q_VOLUME_NAME}:/tmp/moviemasher/queue
       - ${TMP_VOLUME_NAME}:/tmp/moviemasher/temporary

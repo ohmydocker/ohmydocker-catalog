@@ -1,6 +1,6 @@
 .catalog:
   name: "moviemasher"
-  version: "0.1.15"
+  version: "0.1.16"
   description: "Library service powered by Moviemasher"
   uuid: moviemasher-0
   minimum_rancher_version: v0.51.0
@@ -22,6 +22,18 @@
         label: "VOLUME Name"
         required: true
         default: "MOVIEMASHER"
+        type: "string"
+      - variable: "CONFIG_VOLUME_NAME"
+        description: "The Config VOLUME name to associate with this server"
+        label: "Config VOLUME Name"
+        required: true
+        default: "MOVIEMASHER_CONFIG"
+        type: "string"
+      - variable: "MOV_VOLUME_NAME"
+        description: "The Mov VOLUME name to associate with this server"
+        label: "Mov VOLUME Name"
+        required: true
+        default: "MOVIEMASHER_MOV"
         type: "string"
       - variable: "LOG_VOLUME_NAME"
         description: "The Log VOLUME name to associate with this server"
