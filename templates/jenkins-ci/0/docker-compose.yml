@@ -1,10 +1,13 @@
 jenkins-primary:
-  image: "jenkins:2.19.4"
+  image: "ohmydocker/ohmyjenkins"
   ports:
     - "${PORT}:8080"
   labels:
     io.rancher.sidekicks: jenkins-plugins,jenkins-datavolume
     io.rancher.container.hostname_override: container_name
+    io.rancher.container.pull_image: always
+  environment:
+    - JENKINS_HOME=/var/jenkins_home
   volumes_from:
     - jenkins-plugins
     - jenkins-datavolume

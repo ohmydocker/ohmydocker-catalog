@@ -1,6 +1,6 @@
 .catalog:
   name: Jenkins
-  version: 2.19.4-rancher1
+  version: 2.32-ohmyjenkins-061
   description: |
     Jenkins CI management server.
   questions:
@@ -36,6 +36,12 @@
       ssh-credentials
       ssh-slaves
       swarm
+      nodejs
+      rake
+      rvm
+      ruby-runtime
+      simple-theme
+      gravatar
   - variable: "VOLUME_DRIVER"
     description: "The VOLUME driver to associate with this server (convoy-nfs,convoy-efs,convoy-ebs)"
     label: "VOLUME Driver"
