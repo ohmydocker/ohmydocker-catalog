@@ -28,6 +28,9 @@ services:
       MONGODB_DB_URL: "mongodb://meanshopdb/meanshop"
   meanshop-data:
     image: busybox
+    labels:
+      io.rancher.container.start_once: true
+      io.rancher.container.pull_image: always
     volume_driver: ${VOLUME_DRIVER}
     volumes:
       - ${VOLUME_NAME}:/meanshop
