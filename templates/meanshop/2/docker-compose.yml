@@ -1,0 +1,31 @@
+version: '2'
+services:
+  meanshopdb:
+    image: mongo
+    volume_driver: ${VOLUME_DRIVER}
+    volumes:
+      - ${DB_VOLUME_NAME}:/data/db
+    ports:
+      - "27017:27017"
+    labels:
+      io.rancher.container.pull_image: always
+  meanshopweb:
+    image: thalhalla/meanshop
+    labels:
+      io.rancher.container.hostname_override: container_name
+      io.rancher.sidekicks: meanshopdb
+      io.rancher.container.pull_image: always
+      traefik.enable: true
+      traefik.alias: ${MEANSHOP_HOST}
+      traefik.domain: ${MEANSHOP_DOMAIN}
+      traefik.acme: true
+      traefik.port: 7000
+    command: npm start
+    volume_driver: ${VOLUME_DRIVER}
+    volumes:
+      - ${VOLUME_NAME}:/meanshop
+    ports:
+      - "7000:7000"
+    environment:
+      PORT: 7000
+      MONGODB_DB_URL: "mongodb://meanshopdb/meanshop"
