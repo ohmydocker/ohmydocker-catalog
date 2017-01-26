@@ -3,7 +3,7 @@ version: '2'
 services:
 
   wordpress:
-    image: ohmydocker:docker-wp-cli
+    image: ohmydocker/docker-wp-cli
     labels:
       io.rancher.sidekicks: db,wordpress-datavolume
       io.rancher.container.pull_image: always
