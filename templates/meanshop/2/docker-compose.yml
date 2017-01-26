@@ -2,11 +2,10 @@ version: '2'
 services:
   meanshopdb:
     image: mongo
-    volume_driver: ${VOLUME_DRIVER}
-    volumes:
-      - ${DB_VOLUME_NAME}:/data/db
     ports:
       - "27017:27017"
+    volumes_from:
+      - meanshop-data
     labels:
       io.rancher.container.pull_image: always
   meanshopweb:
@@ -21,11 +20,15 @@ services:
       traefik.acme: true
       traefik.port: 7000
     command: npm start
-    volume_driver: ${VOLUME_DRIVER}
-    volumes:
-      - ${VOLUME_NAME}:/meanshop
-    ports:
       - "7000:7000"
+    volumes_from:
+      - meanshop-data
     environment:
       PORT: 7000
       MONGODB_DB_URL: "mongodb://meanshopdb/meanshop"
+  meanshop-data:
+    image: busybox
+    volume_driver: ${VOLUME_DRIVER}
+    volumes:
+      - ${VOLUME_NAME}:/meanshop
+      - ${DB_VOLUME_NAME}:/data/db
