@@ -19,7 +19,7 @@ services:
     restart: always
     image: mariadb
     volumes_from:
-    - gitlab-data
+    - wordpress-data
     labels:
       io.rancher.sidekicks: wordpress-datavolume
     environment:
