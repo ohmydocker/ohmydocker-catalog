@@ -1,0 +1,53 @@
+.catalog:
+  name: "Wordpress"
+  version: "0.1.0"
+  description: "Blog tool, publishing platform and CMS"
+  uuid: Wordpress-0
+  minimum_rancher_version: v0.51.0
+  questions:
+    - variable: "PUBLIC_PORT"
+      description: "public port to access the Wordpress site"
+      label: "Public Port"
+      required: true
+      default: "80"
+      type: "int"
+    - variable: "VOLUME_NAME"
+      description: "Work volume to save wordpress data"
+      label: "Work volume:"
+      required: true
+      default: "WORDPRESS"
+      type: "string"
+    - variable: "DB_VOLUME_NAME"
+      description: "DB Work volume to save Wordpress data"
+      label: "DB Work volume:"
+      required: true
+      default: "WORDPRESS_DB"
+      type: "string"
+    - variable: "VOLUME_DRIVER"
+      description: "The VOLUME driver to associate with this server (convoy-nfs,convoy-efs,convoy-ebs)"
+      label: "VOLUME Driver"
+      required: true
+      default: "convoy-nfs"
+      type: "string"
+    - variable: "DB_USER"
+      description: "Database User to use for the server"
+      label: "DB User"
+      required: true
+      default: "root"
+      type: "string"
+    - variable: "DB_PASS"
+      description: "Database Password to use for the server"
+      label: "DB Password"
+      required: true
+      default: ""
+      type: "password"
+    - variable: "DB_NAME"
+      description: "Database name to use for the Wordpress site"
+      label: "DB NAME"
+      required: true
+      default: ""
+      type: "string"
+
+
+
+wordpress:
