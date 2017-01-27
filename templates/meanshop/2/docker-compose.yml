@@ -1,6 +1,6 @@
 version: '2'
 services:
-  meanshopweb:
+  meanshop:
     image: thalhalla/meanshop
     labels:
       io.rancher.scheduler.affinity:host_label: ${host_label}
