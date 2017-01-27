@@ -47,7 +47,6 @@ services:
       - meango-base
   meango-base:
     restart: always
-    net: none
     tty: true
     labels:
       io.rancher.scheduler.affinity:host_label: ${host_label}
@@ -57,7 +56,6 @@ services:
     stdin_open: true
     entrypoint: /bin/true
   meango-datavolume:
-    net: none
     labels:
       io.rancher.scheduler.affinity:host_label: ${host_label}
       io.rancher.container.hostname_override: container_name
