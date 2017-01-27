@@ -5,7 +5,7 @@ services:
     labels:
       io.rancher.scheduler.affinity:host_label: ${host_label}
       io.rancher.container.hostname_override: container_name
-      io.rancher.sidekicks: meanshop-data,meango-cluster
+      io.rancher.sidekicks: meanshop-data
       io.rancher.container.pull_image: always
       traefik.enable: true
       traefik.alias: ${MEANSHOP_HOST}
@@ -34,8 +34,8 @@ services:
     tty: true
     entrypoint: /opt/rancher/bin/entrypoint.sh
     command:
-    - --replSet
-    - "${replset_name}"
+      - --replSet
+      - "${replset_name}"
     image: mongo:3.2
     labels:
       io.rancher.scheduler.affinity:host_label: ${host_label}
