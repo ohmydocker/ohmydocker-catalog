@@ -47,6 +47,7 @@
           Host label to use as Meanshop 'value' tag.
           Example: 'meanshop=true'
         required: false
+        default: "meanshop=true"
         type: "string"
 
 meanshop:
