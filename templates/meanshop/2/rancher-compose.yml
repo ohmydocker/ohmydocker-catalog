@@ -1,6 +1,6 @@
 .catalog:
   name: "meanshop"
-  version: "0.1.7"
+  version: "0.1.8"
   description: "Library service powered by Meanshop"
   uuid: meanshop-0
   minimum_rancher_version: v0.51.0
@@ -35,6 +35,19 @@
         required: true
         default: "MEANSHOP_DB"
         type: "string"
+      - variable: replset_name
+        description: "Name of the MongoDB replicaSet"
+        label: "ReplicaSet Name"
+        type: "string"
+        required: true
+        default: "rs0"
+      - variable: host_label
+        label: "Host Label to Meanshop Tags"
+        description: |
+          Host label to use as Meanshop 'value' tag.
+          Example: 'meanshop=true'
+        required: false
+        type: "string"
 
 meanshop:
   scale: 1
@@ -56,3 +69,10 @@ meanshop:
     healthy_threshold: 2
     # Response timeout is measured in milliseconds
     response_timeout: 4000
+meango-cluster:
+  scale: 1
+  retain_ip: true
+  metadata:
+    mongo:
+      yml:
+        replset.name: "${replset_name}"
