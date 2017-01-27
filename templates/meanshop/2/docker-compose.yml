@@ -7,7 +7,7 @@ services:
     volumes_from:
       - meanshop-data
     labels:
-      io.rancher.sidekicks: meanshopdb,meanshop-data
+      io.rancher.sidekicks: meanshop-data
       io.rancher.container.pull_image: always
   meanshopweb:
     image: thalhalla/meanshop
