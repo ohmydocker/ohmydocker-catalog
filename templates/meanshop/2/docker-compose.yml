@@ -13,8 +13,6 @@ services:
       traefik.acme: true
       traefik.port: 7000
     command: npm start
-    ports:
-      - "7000:7000"
     volumes_from:
       - meanshop-data
     environment:
