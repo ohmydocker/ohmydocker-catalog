@@ -1,5 +1,5 @@
 name: Jenkins
 description: |
   Jenkins CI server (LTS)
-version: 2.32-ohmyjenkins-061
+version: 2.32-ohmyjenkins-062
 category: Continuous Integration
