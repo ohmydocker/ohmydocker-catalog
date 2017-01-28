@@ -12,7 +12,7 @@ services:
       traefik.domain: ${MEANSHOP_DOMAIN}
       traefik.acme: true
       traefik.port: 7000
-    command: npm start
+    command: ${MEANSHOP_CMD}
     volumes_from:
       - meanshop-data
     environment:

@@ -1,6 +1,6 @@
 .catalog:
   name: "meanshop"
-  version: "0.2.4"
+  version: "0.2.5"
   description: "Library service powered by Meanshop"
   uuid: meanshop-0
   minimum_rancher_version: v0.51.0
@@ -16,6 +16,12 @@
         label: "MEANSHOP Domain"
         required: true
         default: "example.com"
+        type: "string"
+      - variable: "MEANSHOP_COMMAND"
+        description: "COMMAND to use for the MEANSHOP server"
+        label: "MEANSHOP COMMAND"
+        required: true
+        default: "/meanshop/dockerstart.sh"
         type: "string"
       - variable: "VOLUME_DRIVER"
         description: "The VOLUME driver to associate with this server (convoy-nfs,convoy-efs,convoy-ebs)"
