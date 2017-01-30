@@ -12,6 +12,9 @@ jenkins-primary:
   environment:
     - JENKINS_HOME=/var/jenkins_home
     - JENKINS_JAVA_OPTIONS="-Djava.awt.headless=true -Djava.io.tmpdir=/var/jenkins_home/tmp"
+    - TMP=/var/jenkins_home/tmp
+    - TEMP=/var/jenkins_home/tmp
+    - TMPDIR=/var/jenkins_home/tmp
   volumes_from:
     - jenkins-plugins
     - jenkins-datavolume
