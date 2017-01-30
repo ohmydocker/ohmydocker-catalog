@@ -1,6 +1,8 @@
 version: '2'
 services:
   meanshop:
+    image: nginx:alpine
+  meanshop-node:
     image: thalhalla/meanshop
     labels:
       io.rancher.scheduler.affinity:host_label: ${host_label}
