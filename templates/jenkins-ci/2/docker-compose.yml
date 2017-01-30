@@ -26,7 +26,7 @@ jenkins-datavolume:
   volume_driver: ${VOLUME_DRIVER}
   volumes:
     - ${VOLUME_WORK}:/var/jenkins_home
-    - ${VOLUME_TMP}:/var/jenkins_home
+    - ${VOLUME_TMP}:/tmp
   labels:
     io.rancher.container.start_once: true
   entrypoint: ["chown", "-R", "1000:1000", "/var/jenkins_home"]

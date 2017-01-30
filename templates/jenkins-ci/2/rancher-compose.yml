@@ -1,6 +1,6 @@
 .catalog:
   name: Jenkins
-  version: 2.32-ohmyjenkins-068
+  version: 2.32-ohmyjenkins-069
   description: |
     Jenkins CI management server.
   questions:
