@@ -1,0 +1,69 @@
+version: '2'
+services:
+  meanshop:
+    image: nginx:alpine
+  meanshop-node:
+    image: thalhalla/meanshop
+    labels:
+      io.rancher.scheduler.affinity:host_label: ${host_label}
+      io.rancher.container.hostname_override: container_name
+      io.rancher.sidekicks: meanshop-data
+      io.rancher.container.pull_image: always
+      traefik.enable: true
+      traefik.alias: ${MEANSHOP_HOST}
+      traefik.domain: ${MEANSHOP_DOMAIN}
+      traefik.acme: true
+      traefik.port: 7000
+    command:
+      - "${MEANSHOP_COMMAND}"
+    volumes_from:
+      - meanshop-data
+    environment:
+      - PORT=7000
+      - MONGODB_DB_URL="mongodb://meango-cluster/meanshop"
+  meanshop-data:
+    image: busybox
+    labels:
+      io.rancher.scheduler.affinity:host_label: ${host_label}
+      io.rancher.container.start_once: true
+      io.rancher.container.pull_image: always
+    volume_driver: ${VOLUME_DRIVER}
+    volumes:
+      - ${VOLUME_NAME}:/meanshop
+  meango-cluster:
+    restart: always
+    environment:
+      - MONGO_SERVICE_NAME=meango-cluster
+    tty: true
+    entrypoint: /opt/rancher/bin/entrypoint.sh
+    command:
+      - --replSet
+      - "${replset_name}"
+    image: mongo:3.2
+    labels:
+      io.rancher.scheduler.affinity:host_label: ${host_label}
+      io.rancher.container.hostname_override: container_name
+      io.rancher.sidekicks: meango-base, meango-datavolume
+    volumes_from:
+      - meango-datavolume
+      - meango-base
+  meango-base:
+    restart: always
+    tty: true
+    labels:
+      io.rancher.scheduler.affinity:host_label: ${host_label}
+      io.rancher.container.hostname_override: container_name
+      io.rancher.container.start_once: true
+    image: rancher/mongodb-conf:v0.1.0
+    stdin_open: true
+    entrypoint: /bin/true
+  meango-datavolume:
+    labels:
+      io.rancher.scheduler.affinity:host_label: ${host_label}
+      io.rancher.container.hostname_override: container_name
+      io.rancher.container.start_once: true
+    volume_driver: ${VOLUME_DRIVER}
+    volumes:
+      - ${DB_VOLUME_NAME}:/data/db
+    entrypoint: /bin/true
+    image: busybox
