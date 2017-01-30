@@ -1,6 +1,6 @@
 .catalog:
   name: Jenkins
-  version: 2.32-ohmyjenkins-065
+  version: 2.32-ohmyjenkins-066
   description: |
     Jenkins CI management server.
   questions:
@@ -49,8 +49,9 @@
     default: "convoy-nfs"
     type: "string"
 jenkins-primary:
-  scale: 1
-  retain_ip: true
+  metadata:
+    plugins: |
+      ${plugins}
   health_check:
     port: 80
     interval: 30000
@@ -58,6 +59,3 @@ jenkins-primary:
     strategy: recreate
     response_timeout: 10000
     healthy_threshold: 2
-  metadata:
-    plugins: |
-      ${plugins}
