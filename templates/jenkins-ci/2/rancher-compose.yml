@@ -22,6 +22,12 @@
     required: true
     default: "JENKINS"
     type: "string"
+  - variable: "VOLUME_TMP"
+    description: "Temp volume to save jenkins data"
+    label: "Temp volume:"
+    required: true
+    default: "JENKINS_TMP"
+    type: "string"
   - variable: "plugins"
     type: "multiline"
     label: "List of Plugins"
