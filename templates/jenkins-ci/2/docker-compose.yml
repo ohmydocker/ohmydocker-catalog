@@ -12,6 +12,7 @@ jenkins-primary:
   environment:
     - JENKINS_HOME=/var/jenkins_home
     - JENKINS_JAVA_OPTIONS="-Djava.awt.headless=true -Djava.io.tmpdir=/var/jenkins_home/tmp"
+    - JAVA_OPTS="-Djava.awt.headless=true -Djava.io.tmpdir=/var/jenkins_home/tmp"
     - TMP=/var/jenkins_home/tmp
     - TEMP=/var/jenkins_home/tmp
     - TMPDIR=/var/jenkins_home/tmp
@@ -26,7 +27,6 @@ jenkins-datavolume:
   volume_driver: ${VOLUME_DRIVER}
   volumes:
     - ${VOLUME_WORK}:/var/jenkins_home
-    - ${VOLUME_TMP}:/tmp
   labels:
     io.rancher.container.start_once: true
   entrypoint: ["chown", "-R", "1000:1000", "/var/jenkins_home"]
