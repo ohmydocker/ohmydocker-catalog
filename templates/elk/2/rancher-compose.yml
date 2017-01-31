@@ -1,6 +1,6 @@
 .catalog:
   name: "Elasticsearch"
-  version: "0.1.6"
+  version: "0.1.7"
   description: "Elasticsearch. You know, for search"
   questions:
     - variable: "KIBANA_HOST"
@@ -15,20 +15,32 @@
       required: true
       default: "example.com"
       type: "string"
+    - variable: "KOPF_HOST"
+      description: "Hostname to use for the KOPF server"
+      label: "KOPF Hostname"
+      required: true
+      default: "kopf"
+      type: "string"
     - variable: cluster_name
       description: "Unique name to assign to your Elasticsearch cluster."
       label: "Cluster Name"
       type: "string"
       required: true
       default: "es"
+    - variable: "kibana_port"
+      label: "Kibana Port"
+      description: "Unique public port for kibana"
+      type: "int"
+      default: 5601
+      required: true
     - variable: "kopf_port"
-      label: "Public Port"
+      label: "KOPF Port"
       description: "Unique public port for kopf"
       type: "int"
-      default: 80
+      default: 15080
       required: true
     - variable: "host_label"
-      description: "Host label where to run this kibana endpoint service."
+      description: "Host label where to run the kibana endpoint service."
       label: "Host label:"
       required: true
       default: "public=true"
@@ -81,7 +93,7 @@
       required: true
       default: |
         elasticsearch {
-          hosts => ["elasticsearch.rancher.internal:9200"]
+          hosts => ["elasticsearch:9200"]
         }
         stdout {
           codec => rubydebug
@@ -91,7 +103,7 @@ logstash-indexer:
     logstash:
       inputs: |
         redis {
-          host => "redis.rancher.internal"
+          host => "redis"
           port => "6379"
           data_type => "list"
           key => "logstash"
@@ -107,7 +119,7 @@ logstash-collector:
         ${collector_inputs}
       outputs: |
         redis {
-          host => "redis.rancher.internal"
+          host => "redis"
           port => "6379"
           data_type => "list"
           key => "logstash"
