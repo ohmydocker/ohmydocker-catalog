@@ -199,9 +199,6 @@ logstash-collector:
   tty: true
   links:
   - redis:redis
-  ports:
-  - "5000/udp"
-  - "6000/tcp"
   volumes_from:
   - logstash-collector-config
   command:
