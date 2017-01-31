@@ -12,9 +12,9 @@ elasticsearch-datavolume-masters:
     io.rancher.container.start_once: true
   volume_driver: ${VOLUME_DRIVER}
   volumes:
-    - /usr/share/elasticsearch/data
-    - /usr/share/elasticsearch/config
-    - /opt/rancher/bin
+    - ESDATA:/usr/share/elasticsearch/data
+    - ESCONFIG:/usr/share/elasticsearch/config
+    - RANCHERBIN:/opt/rancher/bin
   entrypoint: /bin/true
   image: elasticsearch:2.2.1
 elasticsearch-base-master:
@@ -46,9 +46,9 @@ elasticsearch-datavolume-datanode:
     io.rancher.container.start_once: true
   volume_driver: ${VOLUME_DRIVER}
   volumes:
-    - /usr/share/elasticsearch/data
-    - /usr/share/elasticsearch/config
-    - /opt/rancher/bin
+    - ESDATA:/usr/share/elasticsearch/data
+    - ESCONFIG:/usr/share/elasticsearch/config
+    - RANCHERBIN:/opt/rancher/bin
   entrypoint: /bin/true
   image: elasticsearch:2.2.1
 elasticsearch-base-datanode:
@@ -81,9 +81,9 @@ elasticsearch-datavolume-clients:
     io.rancher.container.start_once: true
   volume_driver: ${VOLUME_DRIVER}
   volumes:
-    - /usr/share/elasticsearch/data
-    - /usr/share/elasticsearch/config
-    - /opt/rancher/bin
+    - ESDATA:/usr/share/elasticsearch/data
+    - ESCONFIG:/usr/share/elasticsearch/config
+    - RANCHERBIN:/opt/rancher/bin
   entrypoint: /bin/true
   image: elasticsearch:2.2.1
 elasticsearch-base-clients:
