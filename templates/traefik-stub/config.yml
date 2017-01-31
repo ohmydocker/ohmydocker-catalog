@@ -1,5 +1,5 @@
-name: ELK stack
+name: Traefik Stub
 description: |
-  Elasticsearch, Logstash and Kibana you know for capture, index, search, and visualize!
+  A stub for another service
 version: 0.2.2
-category: ELK
+category: traefik
