@@ -1,6 +1,6 @@
 .catalog:
   name: "Elasticsearch"
-  version: "0.1.1"
+  version: "0.1.2"
   description: "Elasticsearch. You know, for search"
   questions:
     - variable: "KIBANA_HOST"
@@ -15,6 +15,12 @@
       required: true
       default: "example.com"
       type: "string"
+    - variable: "KOPF_HOST"
+      description: "Hostname to use for the KOPF server"
+      label: "KOPF Hostname"
+      required: true
+      default: "kopf"
+      type: "string"
     - variable: cluster_name
       description: "Unique name to assign to your Elasticsearch cluster."
       label: "Cluster Name"
@@ -25,7 +31,7 @@
       label: "Public Port"
       description: "Unique public port for kopf"
       type: "int"
-      default: 80
+      default: 15080
       required: true
     - variable: "host_label"
       description: "Host label where to run this kibana endpoint service."

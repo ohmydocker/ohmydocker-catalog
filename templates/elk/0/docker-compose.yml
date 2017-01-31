@@ -106,6 +106,13 @@ kopf:
     KOPF_ES_SERVERS: 'es-clients:9200'
   labels:
     io.rancher.container.hostname_override: container_name
+    io.rancher.scheduler.affinity:host_label: ${host_label}
+    io.rancher.container.pull_image: always
+    traefik.enable: true
+    traefik.acme: true
+    traefik.alias: ${KOPF_HOST}
+    traefik.domain: ${KIBANA_DOMAIN}
+    traefik.port: 80
   links:
     - elasticsearch-clients:es-clients
 
@@ -113,6 +120,8 @@ kibana-vip:
   restart: always
   tty: true
   image: rancher/load-balancer-service
+  ports:
+    - "${kibana_port}:80"
   links:
   - nginx-proxy:kibana4
   stdin_open: true
@@ -213,3 +222,7 @@ octossh:
   - logstash-collector:logstash
   ports:
   - "${SSH_PORT}:22"
+  labels:
+    io.rancher.sidekicks: logstash-collector
+    io.rancher.container.hostname_override: container_name
+    io.rancher.scheduler.affinity:host_label: ${host_label}
