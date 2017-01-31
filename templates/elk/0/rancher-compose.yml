@@ -1,6 +1,6 @@
 .catalog:
   name: "Elasticsearch"
-  version: "0.1.4"
+  version: "0.1.5"
   description: "Elasticsearch. You know, for search"
   questions:
     - variable: "KIBANA_HOST"
@@ -40,7 +40,7 @@
       default: 15080
       required: true
     - variable: "host_label"
-      description: "Host label where to run this kibana endpoint service."
+      description: "Host label where to run the kibana endpoint service."
       label: "Host label:"
       required: true
       default: "public=true"
