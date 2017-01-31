@@ -1,6 +1,6 @@
 .catalog:
   name: "Elasticsearch"
-  version: "0.2.4"
+  version: "0.2.5"
   description: "Elasticsearch. You know, for search"
   questions:
     - variable: "KIBANA_HOST"
@@ -125,9 +125,12 @@ logstash-collector:
           key => "logstash"
         }
 
-kibana-vip:
-  scale: 1
-  retain_ip: true
+nginx-proxy:
+  metadata:
+    nginx:
+      conf:
+        servername: "kibana"
+        upstream_port: 5601
   health_check:
     port: 80
     interval: 30000
@@ -135,13 +138,6 @@ kibana-vip:
     strategy: none
     response_timeout: 9000
     healthy_threshold: 2
-
-nginx-proxy:
-  metadata:
-    nginx:
-      conf:
-        servername: "kibana"
-        upstream_port: 5601
 
 elasticsearch-masters:
   metadata:
