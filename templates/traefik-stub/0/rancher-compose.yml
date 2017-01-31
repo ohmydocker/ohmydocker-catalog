@@ -1,0 +1,36 @@
+.catalog:
+  name: "TraefikStub"
+  version: "0.2.2"
+  description: "A stub for another service"
+  questions:
+    - variable: "NGINX_HOST"
+      description: "Hostname to use for the NGINX server"
+      label: "NGINX Hostname"
+      required: true
+      default: "kibana"
+      type: "string"
+    - variable: "NGINX_DOMAIN"
+      description: "Domain to use for the NGINX server"
+      label: "NGINX Domain"
+      required: true
+      default: "example.com"
+      type: "string"
+    - variable: "UPSTREAM_HOST"
+      description: "Upstream Host to use for the NGINX server"
+      label: "NGINX Upstream Hostname"
+      required: true
+      default: "rancherhost"
+      type: "string"
+    - variable: "PORT"
+      description: "Port to host to upstream"
+      label: "port:"
+      required: true
+      default: "80"
+      type: "int"
+
+nginx-proxy:
+  metadata:
+    nginx:
+      conf:
+        servername: "$${UPSTREAM_HOST}"
+        upstream_port: $${PORT}

@@ -1,0 +1,18 @@
+nginx-proxy-conf:
+  image: rancher/nginx-conf:v0.2.0
+  command: "-backend=rancher --prefix=/2015-07-25"
+  labels:
+    io.rancher.container.hostname_override: container_name
+nginx-proxy:
+  image: rancher/nginx:v1.9.4-3
+  volumes_from:
+    - nginx-proxy-conf
+  labels:
+    io.rancher.container.hostname_override: container_name
+    io.rancher.sidekicks: nginx-proxy-conf
+    io.rancher.container.pull_image: always
+    traefik.enable: true
+    traefik.acme: true
+    traefik.alias: ${NGINX_HOST}
+    traefik.domain: ${NGINX_DOMAIN}
+    traefik.port: 80
