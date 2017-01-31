@@ -219,6 +219,9 @@ octossh:
   links:
   - redis:redis
   - logstash-collector:logstash
+  - elasticsearch-clients:elasticsearch
+  - elasticsearch-masters:es-masters
+  - nginx-proxy:kibana4
   ports:
   - "${SSH_PORT}:22"
   labels:
