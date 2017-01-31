@@ -225,6 +225,5 @@ octossh:
   ports:
   - "${SSH_PORT}:22"
   labels:
-    io.rancher.sidekicks: logstash-collector,redis
     io.rancher.container.hostname_override: container_name
     io.rancher.scheduler.affinity:host_label: ${host_label}
