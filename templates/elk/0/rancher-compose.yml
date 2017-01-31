@@ -1,6 +1,6 @@
 .catalog:
   name: "Elasticsearch"
-  version: "0.1.0"
+  version: "0.1.1"
   description: "Elasticsearch. You know, for search"
   questions:
     - variable: "KIBANA_HOST"
@@ -44,6 +44,12 @@
       label: "Key Url:"
       required: true
       default: "https://raw.githubusercontent.com/WebHostingCoopTeam/keys/master/keys"
+      type: "string"
+    - variable: "VOLUME_DRIVER"
+      description: "The VOLUME driver to associate with this server (convoy-nfs,convoy-efs,convoy-ebs)"
+      label: "VOLUME Driver"
+      required: true
+      default: "convoy-nfs"
       type: "string"
 
     - variable: "collector_inputs"

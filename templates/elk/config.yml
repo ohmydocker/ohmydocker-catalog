@@ -1,5 +1,5 @@
 name: ELK stack
 description: |
   Elasticsearch, Logstash and Kibana you know for capture, index, search, and visualize!
-version: 0.1.0
+version: 0.1.1
 category: ELK
