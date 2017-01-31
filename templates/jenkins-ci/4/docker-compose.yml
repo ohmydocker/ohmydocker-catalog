@@ -1,0 +1,32 @@
+jenkins-primary:
+  image: "ohmydocker/ohmyjenkins"
+  labels:
+    io.rancher.sidekicks: jenkins-plugins,jenkins-datavolume
+    io.rancher.container.hostname_override: container_name
+    io.rancher.container.pull_image: always
+    traefik.enable: true
+    traefik.acme: true
+    traefik.alias: ${JENKINS_HOST}
+    traefik.domain: ${JENKINS_DOMAIN}
+    traefik.port: 8080
+  environment:
+    - JENKINS_HOME=/var/jenkins_home
+    - JENKINS_JAVA_OPTIONS="-Djava.awt.headless=true -Djava.io.tmpdir=/var/jenkins_home/tmp"
+    - JAVA_OPTS="-Djava.awt.headless=true -Djava.io.tmpdir=/var/jenkins_home/tmp"
+    - TMP=/var/jenkins_home/tmp
+    - TEMP=/var/jenkins_home/tmp
+    - TMPDIR=/var/jenkins_home/tmp
+  volumes_from:
+    - jenkins-plugins
+    - jenkins-datavolume
+  entrypoint: /usr/share/jenkins/rancher/jenkins.sh
+jenkins-plugins:
+  image: rancher/jenkins-plugins:v0.1.1
+jenkins-datavolume:
+  image: "busybox"
+  volume_driver: ${VOLUME_DRIVER}
+  volumes:
+    - ${VOLUME_WORK}:/var/jenkins_home
+  labels:
+    io.rancher.container.start_once: true
+  entrypoint: ["chown", "-R", "1000:1000", "/var/jenkins_home"]
