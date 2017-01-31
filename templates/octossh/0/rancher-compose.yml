@@ -1,0 +1,37 @@
+.catalog:
+  name: "OctoSSH"
+  version: "0.0.0"
+  description: "OctoSSH"
+  questions:
+    - variable: "host_label"
+      description: "Host label where to run the kibana endpoint service."
+      label: "Host label:"
+      required: true
+      default: "public=true"
+      type: "string"
+    - variable: "SSH_PORT"
+      description: "Port to host SSH on externally"
+      label: "SSH port:"
+      required: true
+      default: "2022"
+      type: "int"
+    - variable: "TAG"
+      description: "either min or full for now see here https://hub.docker.com/r/joshuacox/octossh/tags/"
+      label: "tag:"
+      required: true
+      default: "min"
+      type: "string"
+    - variable: "KEY_URL"
+      description: "where the KEY_URL represents an url where the container can download a list pubs that can be put into the .ssh/authorized_keys file and have access to elastic search through the ssh portal"
+      label: "Key Url:"
+      required: true
+      default: "https://raw.githubusercontent.com/WebHostingCoopTeam/keys/master/keys"
+      type: "string"
+    - variable: "external_link"
+      description: |
+        stack/service link or external service link
+        cluster.
+      label: "External stack/service"
+      default: "es/elasticsearch-clients"
+      required: true
+      type: "service"
