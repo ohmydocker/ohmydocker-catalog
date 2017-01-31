@@ -14,4 +14,4 @@ octossh:
     io.rancher.container.hostname_override: container_name
     io.rancher.scheduler.affinity:host_label: ${host_label}
   external_links:
-  - ${elasticsearch_link}:elasticsearch
+    - ${external_link}:${external_link}
