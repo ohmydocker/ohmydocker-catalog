@@ -6,8 +6,10 @@ services:
       io.rancher.container.pull_image: always
       io.rancher.sidekicks: moviemasherdata
       traefik.enable: true
-      traefik.domain: ${MOVIEMASHER_HOST}
-      traefik.port: ${PORT}
+      traefik.acme: true
+      traefik.alias: ${MOVIEMASHER_HOST}
+      traefik.domain: ${MOVIEMASHER_DOMAIN}
+      traefik.port: 80
     volumes_from:
       - moviemasherdata
     ports:
