@@ -2,16 +2,10 @@ octossh:
   image: joshuacox/octossh:${TAG}
   environment:
     KEY_URL: ${KEY_URL}
-  links:
-  - redis:redis
-  - logstash-collector:logstash
-  - elasticsearch-clients:elasticsearch
-  - elasticsearch-masters:es-masters
-  - nginx-proxy:kibana4
   ports:
   - "${SSH_PORT}:22"
   labels:
     io.rancher.container.hostname_override: container_name
     io.rancher.scheduler.affinity:host_label: ${host_label}
   external_links:
-    - ${external_link}:${external_link}
+    - ${external_link}:extlink
