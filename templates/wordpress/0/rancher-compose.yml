@@ -39,13 +39,13 @@
       description: "Database Password to use for the server"
       label: "DB Password"
       required: true
-      default: ""
+      default: "CHANGETHISNOW"
       type: "password"
     - variable: "DB_NAME"
       description: "Database name to use for the Wordpress site"
       label: "DB NAME"
       required: true
-      default: ""
+      default: "wordpress"
       type: "string"
 
 wordpress:
