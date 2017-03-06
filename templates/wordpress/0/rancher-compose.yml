@@ -1,11 +1,17 @@
 .catalog:
   name: "Wordpress"
-  version: "0.1.0"
+  version: "0.1.1"
   description: "Blog tool, publishing platform and CMS"
   uuid: Wordpress-0
   minimum_rancher_version: v0.51.0
   questions:
-    - variable: "PUBLIC_PORT"
+    - variable: "WORDPRESS_SITE_URL"
+      description: "URL for this Wordpress Site"
+      label: "WP Site URL"
+      required: true
+      default: "http://www.example.com"
+      type: "string"
+    - variable: "WORDPRESS_PORT"
       description: "public port to access the Wordpress site"
       label: "Public Port"
       required: true
@@ -29,19 +35,19 @@
       required: true
       default: "convoy-nfs"
       type: "string"
-    - variable: "DB_USER"
+    - variable: "WORDPRESS_DB_USER"
       description: "Database User to use for the server"
       label: "DB User"
       required: true
       default: "root"
       type: "string"
-    - variable: "DB_PASS"
+    - variable: "WORDPRESS_DB_PASSWORD"
       description: "Database Password to use for the server"
       label: "DB Password"
       required: true
       default: "CHANGETHISNOW"
       type: "password"
-    - variable: "DB_NAME"
+    - variable: "WORDPRESS_DB_NAME"
       description: "Database name to use for the Wordpress site"
       label: "DB NAME"
       required: true
