@@ -17,6 +17,36 @@
       required: true
       default: "80"
       type: "int"
+    - variable: "WORDPRESS_ADMIN_USER"
+      description: "WP Admin Username"
+      label: "WP Admin Username"
+      required: true
+      default: ""
+      type: "string"
+    - variable: "WORDPRESS_ADMIN_PASSWORD"
+      description: "WP Admin Password"
+      label: "WP Admin Password"
+      required: true
+      default: ""
+      type: "string"
+    - variable: "WORDPRESS_ADMIN_EMAIL"
+      description: "WP Admin Email address"
+      label: "WP Admin Email"
+      required: true
+      default: ""
+      type: "string"
+    - variable: "WORDPRESS_TITLE"
+      description: "WP Site Title"
+      label: "WP Site Title"
+      required: true
+      default: ""
+      type: "string"
+    - variable: "WORDPRESS_TAGLINE"
+      description: "WP Site Tagline"
+      label: "WP Site Tagline"
+      required: false
+      default: ""
+      type: "string"
     - variable: "VOLUME_NAME"
       description: "Work volume to save wordpress data"
       label: "Work volume:"
