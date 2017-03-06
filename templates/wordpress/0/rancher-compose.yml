@@ -28,7 +28,7 @@
       label: "WP Admin Password"
       required: true
       default: ""
-      type: "string"
+      type: "password"
     - variable: "WORDPRESS_ADMIN_EMAIL"
       description: "WP Admin Email address"
       label: "WP Admin Email"
@@ -75,7 +75,7 @@
       description: "Database Password to use for the server"
       label: "DB Password"
       required: true
-      default: "CHANGETHISNOW"
+      default: ""
       type: "password"
     - variable: "WORDPRESS_DB_NAME"
       description: "Database name to use for the Wordpress site"
