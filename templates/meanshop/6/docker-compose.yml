@@ -18,6 +18,8 @@ services:
       - meanshop-data
   meanshop-node:
     image: thalhalla/meanshop-node
+    labels:
+      io.rancher.sidekicks: meanshop-data
     volumes_from:
       - meanshop-data
     environment:

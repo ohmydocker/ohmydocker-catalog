@@ -1,6 +1,6 @@
 .catalog:
   name: "meanshop"
-  version: "0.3.2"
+  version: "0.3.3"
   description: "Library service powered by Meanshop"
   uuid: meanshop-0
   minimum_rancher_version: v0.51.0
@@ -59,14 +59,6 @@
 meanshop:
   scale: 1
   retain_ip: true
-
-meanshop-node:
-  scale: 1
-  retain_ip: true
-
-meanshop-nginx:
-  scale: 1
-  retain_ip: true
   health_check:
     # Which port to perform the check against
     port: 80
@@ -85,6 +77,10 @@ meanshop-nginx:
     healthy_threshold: 2
     # Response timeout is measured in milliseconds
     response_timeout: 9000
+
+meanshop-node:
+  scale: 1
+  retain_ip: true
 
 meango-base:
   scale: 1
