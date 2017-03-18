@@ -65,26 +65,32 @@
       required: true
       default: "convoy-nfs"
       type: "string"
+    - variable: "WORDPRESS_DB_HOST"
+      description: "Database Host to use"
+      label: "DB Host"
+      required: true
+      default: "localhost"
+      type: "string"
     - variable: "WORDPRESS_DB_USER"
-      description: "Database User to use for the server"
+      description: "Database User"
       label: "DB User"
       required: true
       default: "root"
       type: "string"
     - variable: "WORDPRESS_DB_PASSWORD"
-      description: "Database Password to use for the server"
+      description: "Database Password"
       label: "DB Password"
       required: true
       default: "lkjasdfSDFasdflwe932js0-"
       type: "password"
     - variable: "WORDPRESS_DB_NAME"
-      description: "Database name to use for the Wordpress site"
+      description: "Database name to use for this Wordpress site"
       label: "DB NAME"
       required: true
       default: "wordpress"
       type: "string"
     - variable: "host_label"
-      description: "Host label where to run this service."
+      description: "Host label determining where to run the service."
       label: "Host label:"
       required: true
       default: "public=true"
