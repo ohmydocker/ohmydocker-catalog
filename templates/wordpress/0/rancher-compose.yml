@@ -68,8 +68,8 @@
     - variable: "WORDPRESS_DB_HOST"
       description: "Database Host to use"
       label: "DB Host"
-      required: false
-      default: ""
+      required: true
+      default: "database"
       type: "string"
     - variable: "WORDPRESS_DB_USER"
       description: "Database User"
