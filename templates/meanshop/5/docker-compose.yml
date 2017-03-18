@@ -14,28 +14,13 @@ services:
       traefik.port: 80
     environment:
       - BRANCH=${BRANCH}
-    volumes_from:
-      - meanshop-data
   meanshop-node:
-    image: thalhalla/meanshop
+    image: thalhalla/meanshop:node
     labels:
       io.rancher.sidekicks: meanshop-data
-    volumes_from:
-      - meanshop-data
-    command:
-      - "${MEANSHOP_COMMAND}"
     environment:
       - PORT=7000
       - MONGODB_DB_URL="mongodb://meango-cluster/meanshop"
-  meanshop-data:
-    image: busybox
-    labels:
-      io.rancher.scheduler.affinity:host_label: ${host_label}
-      io.rancher.container.start_once: true
-      io.rancher.container.pull_image: always
-    volume_driver: ${VOLUME_DRIVER}
-    volumes:
-      - ${VOLUME_NAME}:/meanshop
   meango-cluster:
     restart: always
     environment:
