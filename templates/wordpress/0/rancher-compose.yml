@@ -81,7 +81,7 @@
       description: "Database Password"
       label: "DB Password"
       required: true
-      default: "lkjasdfSDFasdflwe932js0-"
+      default: "lkjasdfSDFasdflwe932js0"
       type: "password"
     - variable: "WORDPRESS_DB_NAME"
       description: "Database name to use for this Wordpress site"
@@ -93,7 +93,7 @@
       description: "Host label determining where to run the service."
       label: "Host label:"
       required: true
-      default: "public=true"
+      default: "host=bragi"
       type: "string"
 
 wordpress:
