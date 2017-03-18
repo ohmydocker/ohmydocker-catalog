@@ -22,7 +22,7 @@ services:
     ports:
       - ${WORDPRESS_PORT}:80
     links:
-      - db
+      - db:database
     volumes_from:
       - wordpress-datavolume
     restart: always
