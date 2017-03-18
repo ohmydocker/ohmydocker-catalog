@@ -1,6 +1,6 @@
 .catalog:
   name: "Wordpress"
-  version: "0.1.1"
+  version: "0.1.2"
   description: "Blog tool, publishing platform and CMS"
   uuid: Wordpress-0
   minimum_rancher_version: v0.51.0
@@ -82,6 +82,12 @@
       label: "DB NAME"
       required: true
       default: "wordpress"
+      type: "string"
+    - variable: "host_label"
+      description: "Host label where to run this service."
+      label: "Host label:"
+      required: true
+      default: "public=true"
       type: "string"
 
 wordpress:
