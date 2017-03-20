@@ -40,7 +40,6 @@ services:
       - meango-base
   meango-base:
     restart: always
-    net: none
     stdin_open: true
     labels:
       io.rancher.scheduler.affinity:host_label: ${host_label}
@@ -51,7 +50,6 @@ services:
     stdin_open: true
     entrypoint: /bin/true
   meango-datavolume:
-    net: none
     stdin_open: true
     labels:
       io.rancher.scheduler.affinity:host_label: ${host_label}
