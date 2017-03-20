@@ -1,43 +1,29 @@
 version: '2'
 services:
-  meanshop:
-    image: thalhalla/meanshop-nginx
+  meanshop-nginx:
+    image: thalhalla/meanshop:nginx
     labels:
       io.rancher.scheduler.affinity:host_label: ${host_label}
       io.rancher.container.hostname_override: container_name
-      io.rancher.sidekicks: meanshop-data
       io.rancher.container.pull_image: always
       traefik.enable: true
       traefik.alias: ${MEANSHOP_HOST}
       traefik.domain: ${MEANSHOP_DOMAIN}
       traefik.acme: true
       traefik.port: 80
-    command:
-      - "${MEANSHOP_COMMAND}"
-    volumes_from:
-      - meanshop-data
   meanshop-node:
-    image: thalhalla/meanshop-node
-    labels:
-      io.rancher.sidekicks: meanshop-data
-    volumes_from:
-      - meanshop-data
-    environment:
-      - PORT=7000
-      - MONGODB_DB_URL="mongodb://meango-cluster/meanshop"
-  meanshop-data:
-    image: busybox
+    image: thalhalla/meanshop:node
     labels:
       io.rancher.scheduler.affinity:host_label: ${host_label}
-      io.rancher.container.start_once: true
       io.rancher.container.pull_image: always
-    volume_driver: ${VOLUME_DRIVER}
-    volumes:
-      - ${VOLUME_NAME}:/meanshop
-  meango-cluster:
+    environment:
+      - PORT=7000
+      - MONGODB_DB_URL="mongodb://meango/meanshop"
+  meango:
     restart: always
     environment:
-      - MONGO_SERVICE_NAME=meango-cluster
+      MONGO_SERVICE_NAME: mongo-cluster
+      CATTLE_SCRIPT_DEBUG: ${debug}
     tty: true
     entrypoint: /opt/rancher/bin/entrypoint.sh
     command:
@@ -48,24 +34,30 @@ services:
       io.rancher.scheduler.affinity:host_label: ${host_label}
       io.rancher.container.hostname_override: container_name
       io.rancher.sidekicks: meango-base, meango-datavolume
+      io.rancher.container.pull_image: always
     volumes_from:
       - meango-datavolume
       - meango-base
   meango-base:
     restart: always
-    tty: true
+    net: none
+    stdin_open: true
     labels:
       io.rancher.scheduler.affinity:host_label: ${host_label}
       io.rancher.container.hostname_override: container_name
       io.rancher.container.start_once: true
+      io.rancher.container.pull_image: always
     image: rancher/mongodb-conf:v0.1.0
     stdin_open: true
     entrypoint: /bin/true
   meango-datavolume:
+    net: none
+    stdin_open: true
     labels:
       io.rancher.scheduler.affinity:host_label: ${host_label}
       io.rancher.container.hostname_override: container_name
       io.rancher.container.start_once: true
+      io.rancher.container.pull_image: always
     volume_driver: ${VOLUME_DRIVER}
     volumes:
       - ${DB_VOLUME_NAME}:/data/db

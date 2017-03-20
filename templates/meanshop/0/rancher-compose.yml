@@ -1,6 +1,6 @@
 .catalog:
   name: "meanshop"
-  version: "0.3.3"
+  version: "0.4.2"
   description: "Library service powered by Meanshop"
   uuid: meanshop-0
   minimum_rancher_version: v0.51.0
@@ -17,23 +17,11 @@
         required: true
         default: "example.com"
         type: "string"
-      - variable: "MEANSHOP_COMMAND"
-        description: "COMMAND to use for the MEANSHOP server"
-        label: "MEANSHOP COMMAND"
-        required: true
-        default: "/meanshop/dockerstart.sh"
-        type: "string"
       - variable: "VOLUME_DRIVER"
         description: "The VOLUME driver to associate with this server (convoy-nfs,convoy-efs,convoy-ebs)"
         label: "VOLUME Driver"
         required: true
         default: "convoy-nfs"
-        type: "string"
-      - variable: "VOLUME_NAME"
-        description: "The VOLUME name to associate with this server"
-        label: "VOLUME Name"
-        required: true
-        default: "MEANSHOP"
         type: "string"
       - variable: "DB_VOLUME_NAME"
         description: "The VOLUME name to associate with the DB of this server"
@@ -56,7 +44,7 @@
         default: "meanshop=true"
         type: "string"
 
-meanshop:
+meanshop-nginx:
   scale: 1
   retain_ip: true
   health_check:
