@@ -1,6 +1,6 @@
 .catalog:
   name: "meanshop"
-  version: "0.4.4"
+  version: "0.4.5"
   description: "Library service powered by Meanshop"
   uuid: meanshop-0
   minimum_rancher_version: v0.51.0
@@ -74,7 +74,7 @@ meango-base:
   scale: 1
   retain_ip: true
 
-meango-cluster:
+meango:
   scale: 1
   retain_ip: true
   metadata:
