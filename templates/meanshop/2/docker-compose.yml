@@ -17,6 +17,4 @@ services:
       io.rancher.scheduler.affinity:host_label: ${host_label}
       io.rancher.container.pull_image: always
     environment:
-      - PORT=7000
-      - MONGODB_DB_URL="mongodb://meango/meanshop"
       - MEANGO_HOST=${MEANGO_HOST}
