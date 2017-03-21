@@ -19,4 +19,4 @@ services:
     environment:
       - PORT=7000
       - MONGODB_DB_URL="mongodb://meango/meanshop"
-      - MEANGO_PORT_27017_TCP_ADDR=${MEANGO_PORT_27017_TCP_ADDR}
+      - MEANGO_HOST=${MEANGO_HOST}
