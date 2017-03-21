@@ -1,6 +1,6 @@
 .catalog:
   name: "meanshop"
-  version: "0.4.9"
+  version: "0.5.0"
   description: "Library service powered by Meanshop"
   uuid: meanshop-0
   minimum_rancher_version: v0.51.0
@@ -23,6 +23,12 @@
         required: true
         default: "mymongo_host"
         type: "string"
+      - variable: "MEANGO_DEBUG"
+        description: "include debug data in stdout"
+        label: "debug"
+        required: false
+        default: false
+        type: "boolean"
       - variable: host_label
         label: "Host Label to Meanshop Tags"
         description: |
