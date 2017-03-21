@@ -26,7 +26,7 @@ services:
     labels:
       io.rancher.scheduler.affinity:host_label: ${host_label}
       io.rancher.container.hostname_override: container_name
-      io.rancher.sidekicks: meango-base, meango-datavolume
+      io.rancher.sidekicks: meango-datavolume
       io.rancher.container.pull_image: always
     volumes_from:
       - meango-datavolume

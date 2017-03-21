@@ -1,6 +1,6 @@
 .catalog:
   name: "meanshop"
-  version: "0.4.6"
+  version: "0.4.7"
   description: "Library service powered by Meanshop"
   uuid: meanshop-0
   minimum_rancher_version: v0.51.0
@@ -67,10 +67,6 @@ meanshop-nginx:
     response_timeout: 9000
 
 meanshop-node:
-  scale: 1
-  retain_ip: true
-
-meango-base:
   scale: 1
   retain_ip: true
 
