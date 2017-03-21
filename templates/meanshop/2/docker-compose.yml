@@ -18,3 +18,4 @@ services:
       io.rancher.container.pull_image: always
     environment:
       - MEANGO_HOST=${MEANGO_HOST}
+      - MEANGO_DEBUG=${MEANGO_DEBUG}
