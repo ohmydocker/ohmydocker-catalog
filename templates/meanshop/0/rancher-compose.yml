@@ -1,6 +1,6 @@
 .catalog:
   name: "meanshop"
-  version: "0.4.4"
+  version: "0.4.5"
   description: "Library service powered by Meanshop"
   uuid: meanshop-0
   minimum_rancher_version: v0.51.0
@@ -43,11 +43,11 @@ meanshop-nginx:
   retain_ip: true
 
 meanshop-node:
-  scale: 3
+  scale: 1
   retain_ip: true
 
 meango:
-  scale: 3
+  scale: 1
   retain_ip: true
   metadata:
     mongo:
