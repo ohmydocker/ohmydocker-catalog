@@ -1,6 +1,6 @@
 .catalog:
   name: "moviemasher"
-  version: "0.1.18"
+  version: "0.1.13"
   description: "Library service powered by Moviemasher"
   uuid: moviemasher-0
   minimum_rancher_version: v0.51.0
@@ -9,13 +9,7 @@
         description: "Hostname to use for the MOVIEMASHER server"
         label: "MOVIEMASHER Hostname"
         required: true
-        default: "moviemasher"
-        type: "string"
-      - variable: "MOVIEMASHER_DOMAIN"
-        description: "Domain to use for the MOVIEMASHER server"
-        label: "MOVIEMASHER Domain"
-        required: true
-        default: "example.com"
+        default: "moviemasher.example.com"
         type: "string"
       - variable: "VOLUME_DRIVER"
         description: "The VOLUME driver to associate with this server (convoy-nfs,convoy-efs,convoy-ebs)"
@@ -28,18 +22,6 @@
         label: "VOLUME Name"
         required: true
         default: "MOVIEMASHER"
-        type: "string"
-      - variable: "CONFIG_VOLUME_NAME"
-        description: "The Config VOLUME name to associate with this server"
-        label: "Config VOLUME Name"
-        required: true
-        default: "MOVIEMASHER_CONFIG"
-        type: "string"
-      - variable: "MOV_VOLUME_NAME"
-        description: "The Mov VOLUME name to associate with this server"
-        label: "Mov VOLUME Name"
-        required: true
-        default: "MOVIEMASHER_MOV"
         type: "string"
       - variable: "LOG_VOLUME_NAME"
         description: "The Log VOLUME name to associate with this server"
@@ -69,5 +51,12 @@
 moviemasher:
   scale: 1
   retain_ip: true
+  health_check:
+    port: 80
+    interval: 30000
+    unhealthy_threshold: 3
+    strategy: recreate
+    response_timeout: 2000
+    healthy_threshold: 2
 moviemasherrb:
   scale: 1

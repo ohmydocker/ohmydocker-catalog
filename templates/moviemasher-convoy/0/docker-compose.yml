@@ -1,0 +1,39 @@
+version: '2'
+services:
+  moviemasher:
+    image: moviemasher/angular-moviemasher:latest
+    labels:
+      io.rancher.container.pull_image: always
+      io.rancher.sidekicks: moviemasherdata
+      traefik.enable: true
+      traefik.domain: ${MOVIEMASHER_HOST}
+      traefik.port: ${PORT}
+    volume_driver: ${VOLUME_DRIVER}
+    volumes:
+      - ${VOLUME_NAME}:/tmp/moviemasher/log
+      - ${VOLUME_NAME}:/tmp/moviemasher/queue
+      - ${VOLUME_NAME}:/tmp/moviemasher/temporary
+      - ${VOLUME_NAME}:/var/www/html
+    ports:
+      - "${PORT}:80"
+  moviemasherrb:
+    image: moviemasher/moviemasher.rb:latest
+    labels:
+      io.rancher.sidekicks: moviemasherdata
+      io.rancher.container.pull_image: always
+    volumes_from:
+      - moviemasherdata
+    command: process_loop
+    tty: true
+  moviemasherdata:
+    image: busybox
+    command: /bin/true
+    labels:
+      io.rancher.container.pull_image: always
+      io.rancher.container.start_once: true
+    volume_driver: ${VOLUME_DRIVER}
+    volumes:
+      - ${VOLUME_NAME}:/var/www/html
+      - ${LOG_VOLUME_NAME}:/tmp/moviemasher/log
+      - ${Q_VOLUME_NAME}:/tmp/moviemasher/queue
+      - ${TMP_VOLUME_NAME}:/tmp/moviemasher/temporary
