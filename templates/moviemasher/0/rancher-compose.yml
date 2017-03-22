@@ -1,6 +1,6 @@
 .catalog:
   name: "moviemasher"
-  version: "0.1.18"
+  version: "0.1.19"
   description: "Library service powered by Moviemasher"
   uuid: moviemasher-0
   minimum_rancher_version: v0.51.0
@@ -16,48 +16,6 @@
         label: "MOVIEMASHER Domain"
         required: true
         default: "example.com"
-        type: "string"
-      - variable: "VOLUME_DRIVER"
-        description: "The VOLUME driver to associate with this server (convoy-nfs,convoy-efs,convoy-ebs)"
-        label: "VOLUME Driver"
-        required: true
-        default: "convoy-nfs"
-        type: "string"
-      - variable: "VOLUME_NAME"
-        description: "The VOLUME name to associate with this server"
-        label: "VOLUME Name"
-        required: true
-        default: "MOVIEMASHER"
-        type: "string"
-      - variable: "CONFIG_VOLUME_NAME"
-        description: "The Config VOLUME name to associate with this server"
-        label: "Config VOLUME Name"
-        required: true
-        default: "MOVIEMASHER_CONFIG"
-        type: "string"
-      - variable: "MOV_VOLUME_NAME"
-        description: "The Mov VOLUME name to associate with this server"
-        label: "Mov VOLUME Name"
-        required: true
-        default: "MOVIEMASHER_MOV"
-        type: "string"
-      - variable: "LOG_VOLUME_NAME"
-        description: "The Log VOLUME name to associate with this server"
-        label: "Log VOLUME Name"
-        required: true
-        default: "MOVIEMASHER_LOG"
-        type: "string"
-      - variable: "Q_VOLUME_NAME"
-        description: "The Queue VOLUME name to associate with this server"
-        label: "Q VOLUME Name"
-        required: true
-        default: "MOVIEMASHER_Q"
-        type: "string"
-      - variable: "TMP_VOLUME_NAME"
-        description: "The TMP VOLUME name to associate with this server"
-        label: "TMP VOLUME Name"
-        required: true
-        default: "MOVIEMASHER_TMP"
         type: "string"
       - variable: "PORT"
         type: "int"
