@@ -15,13 +15,10 @@ services:
       io.rancher.container.pull_image: always
     environment:
       MEANGO_DEBUG: ${debug}
-      PORT: 7000
+      PORT: 9000
       MONGODB_DB_URL: "mongodb://meango/meanshop"
     ports:
-      - "7000:7000"
-    depends_on:
-      - db
-    environment:
+      - "9000:9000"
   meango:
     restart: always
     environment:
