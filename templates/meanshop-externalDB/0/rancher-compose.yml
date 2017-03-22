@@ -2,7 +2,7 @@
   name: "meanshop"
   version: "0.5.4"
   description: "Library service powered by Meanshop"
-  uuid: meanshop-0
+  uuid: meanshopextdb-0
   minimum_rancher_version: v0.51.0
   questions:
       - variable: "MEANSHOP_HOST"
