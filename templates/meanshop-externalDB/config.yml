@@ -1,5 +1,5 @@
-name: Meanshop
+name: Meanshop-ExtDB
 description: |
-  Library service powered by Meanshop
+  Library service powered by Meanshop using an external MongoDB
 version: 0.5.4
 category: Repository
