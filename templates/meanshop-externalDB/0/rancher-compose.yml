@@ -1,6 +1,6 @@
 .catalog:
   name: "meanshop"
-  version: "0.5.1"
+  version: "0.5.4"
   description: "Library service powered by Meanshop"
   uuid: meanshop-0
   minimum_rancher_version: v0.51.0
@@ -40,24 +40,6 @@
 meanshop-nginx:
   scale: 1
   retain_ip: true
-  health_check:
-    # Which port to perform the check against
-    port: 80
-    # For TCP, request_line needs to be '' or not shown
-    # TCP Example:
-    # request_line: ''
-    # request_line: GET / HTTP/1.0
-    request_line: ''
-    # Interval is measured in milliseconds
-    interval: 30000
-    initializing_timeout: 360000
-    unhealthy_threshold: 9
-    # Strategy for what to do when unhealthy
-    # In this service, Rancher will recreate any unhealthy containers
-    strategy: none
-    healthy_threshold: 2
-    # Response timeout is measured in milliseconds
-    response_timeout: 9000
 
 meanshop-node:
   scale: 1

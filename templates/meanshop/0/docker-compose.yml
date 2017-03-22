@@ -6,19 +6,16 @@ services:
       io.rancher.scheduler.affinity:host_label: ${host_label}
       io.rancher.container.hostname_override: container_name
       io.rancher.container.pull_image: always
-      traefik.enable: true
-      traefik.alias: ${MEANSHOP_HOST}
-      traefik.domain: ${MEANSHOP_DOMAIN}
-      traefik.acme: true
-      traefik.port: 80
+    port:
+      - ${PORT}:80
   meanshop-node:
     image: thalhalla/meanshop:node
     labels:
       io.rancher.scheduler.affinity:host_label: ${host_label}
       io.rancher.container.pull_image: always
     environment:
-      - PORT=7000
-      - MONGODB_DB_URL="mongodb://meango/meanshop"
+      - MEANGO_HOST=${MEANGO_HOST}
+      - MEANGO_DEBUG=${debug}
   meango:
     restart: always
     environment:
@@ -51,15 +48,11 @@ services:
     stdin_open: true
     entrypoint: /bin/true
   meango-datavolume:
-    net: none
-    stdin_open: true
     labels:
       io.rancher.scheduler.affinity:host_label: ${host_label}
       io.rancher.container.hostname_override: container_name
       io.rancher.container.start_once: true
-      io.rancher.container.pull_image: always
-    volume_driver: ${VOLUME_DRIVER}
     volumes:
-      - ${DB_VOLUME_NAME}:/data/db
+      - /data/db
     entrypoint: /bin/true
     image: busybox
