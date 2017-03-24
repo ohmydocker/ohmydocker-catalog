@@ -1,0 +1,27 @@
+version: '2'
+services:
+  meanshop-nginx:
+    image: ohmydocker/meanshop:nginx
+    labels:
+      io.rancher.scheduler.affinity:host_label: ${host_label}
+      io.rancher.container.hostname_override: container_name
+      io.rancher.container.pull_image: always
+      traefik.enable: true
+      traefik.alias: ${MEANSHOP_HOST}
+      traefik.domain: ${MEANSHOP_DOMAIN}
+      traefik.acme: true
+      traefik.port: 80
+    environment:
+      NGINX_HOST: ${MEANSHOP_HOST}.${MEANSHOP_DOMAIN}
+      NGINX_PORT: 80
+    ports:
+      - ${PORT}:80
+  meanshop-node:
+    image: ohmydocker/meanshop:alpine
+    labels:
+      io.rancher.scheduler.affinity:host_label: ${host_label}
+      io.rancher.container.pull_image: always
+    environment:
+      MEANGO_DEBUG: ${MEANGO_DEBUG}
+      PORT: 9000
+      MONGODB_DB_URL: "mongodb://${MEANGO_HOST}/meanshop"
