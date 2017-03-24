@@ -22,8 +22,6 @@ services:
         - WORDPRESS_TAGLINE=${WORDPRESS_TAGLINE}
     ports:
       - ${WORDPRESS_PORT}:80
-    links:
-      - db:database
     volumes_from:
       - wordpress-datavolume
     restart: always
