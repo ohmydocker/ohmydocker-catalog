@@ -1,0 +1,54 @@
+version: '2'
+
+services:
+
+  wordpress:
+    image: ohmydocker/docker-wordpress-wp-cli
+    labels:
+      io.rancher.scheduler.affinity:host_label: ${host_label}
+      io.rancher.sidekicks: mysql,wordpress-datavolume
+      io.rancher.container.pull_image: always
+      traefik.enable: true
+      traefik.alias: ${WORDPRESS_HOST}
+      traefik.domain: ${WORDPRESS_DOMAIN}
+      traefik.acme: true
+      traefik.port: 80
+    environment:
+        - WORDPRESS_DB_USER=wordpress
+        - WORDPRESS_DB_PASSWORD=${WORDPRESS_DB_PASSWORD}
+        - WORDPRESS_DB_NAME=wordpress
+        - WORDPRESS_DB_HOST=mysql
+        - WORDPRESS_SITE_URL=http://${WORDPRESS_HOST}.${WORDPRESS_DOMAIN}
+        - WORDPRESS_PORT=80
+        - WORDPRESS_ADMIN_EMAIL=${WORDPRESS_ADMIN_EMAIL}
+        - WORDPRESS_ADMIN_USER=${WORDPRESS_ADMIN_USER}
+        - WORDPRESS_ADMIN_PASSWORD=${WORDPRESS_ADMIN_PASSWORD}
+        - WORDPRESS_TITLE=${WORDPRESS_TITLE}
+        - WORDPRESS_TAGLINE=${WORDPRESS_TAGLINE}
+    volumes_from:
+      - wordpress-datavolume
+    restart: always
+
+  mysql:
+    restart: always
+    image: mariadb
+    volumes_from:
+    - wordpress-datavolume
+    labels:
+      io.rancher.sidekicks: wordpress-datavolume
+    environment:
+    - MYSQL_USER=wordpress
+    - MYSQL_PASSWORD=${WORDPRESS_DB_PASSWORD}
+    - MYSQL_ROOT_PASSWORD=${WORDPRESS_DB_PASSWORD}
+    - MYSQL_DATABASE=wordpress
+    - SKIP_NAME_RESOLVE=Yes
+
+  wordpress-datavolume:
+    image: "busybox"
+    volume_driver: ${VOLUME_DRIVER}
+    volumes:
+      - ${VOLUME_NAME}:/var/www/html
+      - ${DB_VOLUME_NAME}:/var/lib/mysql
+    labels:
+      io.rancher.container.start_once: true
+    entrypoint: ["/bin/true"]
