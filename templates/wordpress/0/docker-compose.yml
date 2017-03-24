@@ -6,7 +6,7 @@ services:
     image: ohmydocker/docker-wordpress-wp-cli
     labels:
       io.rancher.scheduler.affinity:host_label: ${host_label}
-      io.rancher.sidekicks: db,wordpress-datavolume
+      io.rancher.sidekicks: mysql,wordpress-datavolume
       io.rancher.container.pull_image: always
     environment:
         - WORDPRESS_DB_USER=${WORDPRESS_DB_USER}
@@ -26,7 +26,7 @@ services:
       - wordpress-datavolume
     restart: always
 
-  db:
+  mysql:
     restart: always
     image: mariadb
     volumes_from:
