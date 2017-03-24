@@ -75,7 +75,7 @@
       description: "Database User"
       label: "DB User"
       required: true
-      default: "root"
+      default: "wordpress"
       type: "string"
     - variable: "WORDPRESS_DB_PASSWORD"
       description: "Database Password"
