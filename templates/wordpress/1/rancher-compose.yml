@@ -13,8 +13,8 @@ catalog:
       default: "example.com"
       type: "string"
     - variable: "WORDPRESS_HOST"
-      description: "Host for this Wordpress Site"
-      label: "WP Site URL"
+      description: "Host for this Wordpress Site - do not include the domain (put that into the previous question)"
+      label: "WP Host"
       required: true
       default: "demo"
       type: "string"
