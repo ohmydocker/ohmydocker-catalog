@@ -37,10 +37,10 @@ services:
     labels:
       io.rancher.sidekicks: wordpress-datavolume
     environment:
-    - MYSQL_USER=${WORDPRESS_DB_USER}
+    - MYSQL_USER=wordpress
     - MYSQL_PASSWORD=${WORDPRESS_DB_PASSWORD}
     - MYSQL_ROOT_PASSWORD=${WORDPRESS_DB_PASSWORD}
-    - MYSQL_DATABASE=${WORDPRESS_DB_NAME}
+    - MYSQL_DATABASE=wordpress
     - SKIP_NAME_RESOLVE=Yes
 
   wordpress-datavolume:
