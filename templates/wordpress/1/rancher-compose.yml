@@ -1,7 +1,7 @@
 version: '2'
 catalog:
   name: "Wordpress"
-  version: "0.1.7"
+  version: "0.1.8"
   description: "Blog tool, publishing platform and CMS"
   uuid: Wordpress-0
   minimum_rancher_version: v0.51.0
@@ -65,31 +65,17 @@ catalog:
       label: "VOLUME Driver"
       required: true
       default: "convoy-nfs"
-      type: "string"
-    - variable: "WORDPRESS_DB_HOST"
-      description: "Database Host to use"
-      label: "DB Host"
-      required: true
-      default: "mysql"
-      type: "string"
-    - variable: "WORDPRESS_DB_USER"
-      description: "Database User"
-      label: "DB User"
-      required: true
-      default: "wordpress"
-      type: "string"
+      type: enum
+      options: # List of options if using type of `enum`
+        - convoy-nfs
+        - convoy-efs
+        - convoy-ebs
     - variable: "WORDPRESS_DB_PASSWORD"
       description: "Database Password"
       label: "DB Password"
       required: true
       default: "lkjasdfSDFasdflwe932js0"
       type: "password"
-    - variable: "WORDPRESS_DB_NAME"
-      description: "Database name to use for this Wordpress site"
-      label: "DB NAME"
-      required: true
-      default: "wordpress"
-      type: "string"
     - variable: "host_label"
       description: "Host label determining where to run the service."
       label: "Host label:"
