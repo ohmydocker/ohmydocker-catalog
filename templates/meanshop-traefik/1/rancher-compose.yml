@@ -2,7 +2,7 @@ version: '2'
 catalog:
   name: "meanshop"
   version: "0.5.8"
-  description: "Library service powered by Meanshop"
+  description: "E-commerce powered by Meanshop"
   uuid: meanshoptraefik-0
   minimum_rancher_version: v0.51.0
   questions:
