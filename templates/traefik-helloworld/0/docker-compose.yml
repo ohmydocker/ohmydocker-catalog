@@ -1,6 +1,6 @@
 version: '2'
 services:
-  meanshop-nginx:
+  helloworld-nginx:
     image: nginx:stable-alpine
     labels:
       io.rancher.container.hostname_override: container_name
