@@ -13,5 +13,3 @@ services:
     environment:
       NGINX_HOST: ${HELLOWORLD_HOST}.${HELLOWORLD_DOMAIN}
       NGINX_PORT: 80
-    command:
-      - echo 'hello world'> /usr/share/nginx/html/index.html; nginx -g 'daemon'

@@ -1,7 +1,7 @@
 version: '2'
 catalog:
   name: "helloworld-traefik"
-  version: "0.1.1"
+  version: "0.1.2"
   description: "Traefik Hello World"
   uuid: helloworldtraefik-0
   minimum_rancher_version: v0.51.0
