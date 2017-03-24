@@ -5,6 +5,7 @@ services:
   wordpress:
     image: ohmydocker/docker-wordpress-wp-cli
     labels:
+      io.rancher.scheduler.affinity:host_label: ${host_label}
       io.rancher.sidekicks: db,wordpress-datavolume
       io.rancher.container.pull_image: always
     environment:
