@@ -1,7 +1,7 @@
 .catalog:
-  name: "meanshop"
-  version: "0.4.7"
-  description: "Library service powered by Meanshop"
+  name: "meanshopdemo"
+  version: "0.4.6"
+  description: "E-commerce powered by Meanshop"
   uuid: meanshop-0
   minimum_rancher_version: v0.51.0
   questions:
@@ -23,6 +23,12 @@
         required: true
         default: "3547"
         type: "int"
+      - variable: replset_name
+        description: "Name of the MongoDB replicaSet"
+        label: "ReplicaSet Name"
+        type: "string"
+        required: true
+        default: "rs0"
       - variable: host_label
         label: "Host Label to Meanshop Tags"
         description: |
@@ -43,3 +49,7 @@ meanshop-node:
 meango:
   scale: 1
   retain_ip: true
+  metadata:
+    mongo:
+      yml:
+        replset.name: "${replset_name}"
