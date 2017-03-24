@@ -1,0 +1,5 @@
+name: Traefik-helloworld
+description: |
+  Traefik hello world example
+version: 0.1.0
+category: Repository
