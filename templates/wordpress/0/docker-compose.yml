@@ -33,6 +33,7 @@ services:
     - wordpress-datavolume
     labels:
       io.rancher.sidekicks: wordpress-datavolume
+      io.rancher.scheduler.affinity:host_label: ${host_label}
     environment:
     - MYSQL_USER=${WORDPRESS_DB_USER}
     - MYSQL_PASSWORD=${WORDPRESS_DB_PASSWORD}
@@ -48,4 +49,5 @@ services:
       - ${DB_VOLUME_NAME}:/var/lib/mysql
     labels:
       io.rancher.container.start_once: true
+      io.rancher.scheduler.affinity:host_label: ${host_label}
     entrypoint: ["/bin/true"]
