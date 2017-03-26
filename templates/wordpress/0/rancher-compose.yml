@@ -1,6 +1,6 @@
 .catalog:
   name: "Wordpress"
-  version: "0.1.7"
+  version: "0.1.8"
   description: "Blog tool, publishing platform and CMS"
   uuid: Wordpress-0
   minimum_rancher_version: v0.51.0
@@ -9,7 +9,7 @@
       description: "URL for this Wordpress Site"
       label: "WP Site URL"
       required: true
-      default: "http://demo.ohmydocker.com"
+      default: "http://demo.thalhalla.com"
       type: "string"
     - variable: "WORDPRESS_PORT"
       description: "public port to access the Wordpress site"
@@ -33,7 +33,7 @@
       description: "WP Admin Email address"
       label: "WP Admin Email"
       required: true
-      default: "james@webtechhq.com"
+      default: "demo@ohmydocker.com"
       type: "string"
     - variable: "WORDPRESS_TITLE"
       description: "WP Site Title"
