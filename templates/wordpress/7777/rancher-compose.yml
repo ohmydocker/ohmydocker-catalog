@@ -1,6 +1,6 @@
 .catalog:
   name: "Wordpress"
-  version: "7777-adjustingalternatives"
+  version: "7777"
   description: "Blog tool, publishing platform and CMS"
   uuid: Wordpress-7777
   minimum_rancher_version: v0.51.0
