@@ -1,6 +1,6 @@
 .catalog:
   name: "Wordpress"
-  version: "adjustingalternatives"
+  version: "99"
   description: "Blog tool, publishing platform and CMS"
   uuid: Wordpress-99
   minimum_rancher_version: v0.51.0
