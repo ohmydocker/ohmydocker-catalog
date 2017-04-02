@@ -1,8 +1,8 @@
 .catalog:
   name: "Wordpress"
-  version: "adjustingalternatives_0.1"
+  version: "99"
   description: "Blog tool, publishing platform and CMS"
-  uuid: Wordpress-0
+  uuid: Wordpress-99
   minimum_rancher_version: v0.51.0
   questions:
     - variable: "WORDPRESS_SITE_URL"
@@ -15,7 +15,7 @@
       description: "public port to access the Wordpress site"
       label: "Public Port"
       required: true
-      default: "80"
+      default: "7777"
       type: "int"
     - variable: "WORDPRESS_ADMIN_USER"
       description: "WP Admin Username"
