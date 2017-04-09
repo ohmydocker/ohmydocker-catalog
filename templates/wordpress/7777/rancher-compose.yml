@@ -51,13 +51,13 @@
       description: "Work volume to save wordpress data"
       label: "Work volume:"
       required: true
-      default: "WORDPRESS"
+      default: "WP-AA"
       type: "string"
     - variable: "DB_VOLUME_NAME"
       description: "DB Work volume to save Wordpress data"
       label: "DB Work volume:"
       required: true
-      default: "WORDPRESS_DB"
+      default: "WP-AA_DB"
       type: "string"
     - variable: "VOLUME_DRIVER"
       description: "The VOLUME driver to associate with this server (convoy-nfs,convoy-efs,convoy-ebs)"
