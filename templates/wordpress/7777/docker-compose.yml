@@ -34,6 +34,7 @@ services:
     labels:
       io.rancher.sidekicks: wordpress-datavolume
       io.rancher.scheduler.affinity:host_label: ${host_label}
+      io.rancher.container.requested_ip: ${WORDPRESS_DB_HOST}
     environment:
     - MYSQL_USER=${WORDPRESS_DB_USER}
     - MYSQL_PASSWORD=${WORDPRESS_DB_PASSWORD}
