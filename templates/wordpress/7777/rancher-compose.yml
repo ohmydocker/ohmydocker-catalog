@@ -69,7 +69,7 @@
       description: "Database Host to use"
       label: "DB Host"
       required: true
-      default: "mysql"
+      default: "mysqldb"
       type: "string"
     - variable: "WORDPRESS_DB_USER"
       description: "Database User"
