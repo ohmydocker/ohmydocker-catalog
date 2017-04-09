@@ -34,15 +34,12 @@ services:
     labels:
       io.rancher.sidekicks: wordpress-datavolume
       io.rancher.scheduler.affinity:host_label: ${host_label}
-      io.rancher.container.requested_ip: ${WORDPRESS_DB_HOST}
     environment:
       - MYSQL_USER=${WORDPRESS_DB_USER}
       - MYSQL_PASSWORD=${WORDPRESS_DB_PASSWORD}
       - MYSQL_ROOT_PASSWORD=${WORDPRESS_DB_PASSWORD}
       - MYSQL_DATABASE=${WORDPRESS_DB_NAME}
       - SKIP_NAME_RESOLVE=Yes
-    ports:
-      - 3306:3306
 
   wordpress-datavolume:
     image: "busybox"
