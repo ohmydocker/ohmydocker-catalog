@@ -41,6 +41,8 @@ services:
     - MYSQL_ROOT_PASSWORD=${WORDPRESS_DB_PASSWORD}
     - MYSQL_DATABASE=${WORDPRESS_DB_NAME}
     - SKIP_NAME_RESOLVE=Yes
+    ports:
+    - 3306
 
   wordpress-datavolume:
     image: "busybox"
