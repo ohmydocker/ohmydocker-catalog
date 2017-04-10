@@ -45,7 +45,7 @@ services:
     image: "busybox"
     volume_driver: ${VOLUME_DRIVER}
     volumes:
-      - ${VOLUME_NAME}:/var/www/html
+      - ${VOLUME_NAME}:/var/www
     labels:
       io.rancher.container.start_once: true
       io.rancher.scheduler.affinity:host_label: ${host_label}
