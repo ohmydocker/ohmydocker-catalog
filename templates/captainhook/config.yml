@@ -1,0 +1,5 @@
+name: Captain Hook
+description: |
+  Generic webhook receiver/transmitter
+version: 0.0.1
+category: webhook

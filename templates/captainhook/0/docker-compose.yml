@@ -1,0 +1,14 @@
+version: '2'
+services:
+  captainhook:
+    image: maccyber/dockerhub-webhook
+    labels:
+      io.rancher.scheduler.affinity:host_label: ${host_label}
+      io.rancher.container.hostname_override: container_name
+      io.rancher.container.pull_image: always
+    environment:
+      SERVER_PORT: ${SERVER_PORT}
+      TOKEN: ${TOKEN}
+      ROUTE: ${ROUTE}
+    ports:
+    - "${SERVER_PORT}:${SERVER_PORT}"
