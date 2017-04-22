@@ -1,7 +1,7 @@
 version: '2'
 catalog:
   name: "Wordpress-Builder"
-  version: "999.523-aa"
+  version: "999.524-aa"
   description: "OhMyDocker One-Click Wordpress Builder"
   uuid: Wordpress-Builder-0
   minimum_rancher_version: v0.51.0
