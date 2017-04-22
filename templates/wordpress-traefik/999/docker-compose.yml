@@ -6,6 +6,7 @@ services:
     image: ohmydocker/docker-wordpress-wp-cli:adjustingalternatives
     labels:
       io.rancher.scheduler.affinity:host_label: ${host_label}
+      io.rancher.container.hostname_override: container_name
       io.rancher.sidekicks: mysql,wordpress-datavolume
       io.rancher.container.pull_image: always
       traefik.enable: true
