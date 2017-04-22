@@ -1,7 +1,7 @@
 version: '2'
 catalog:
   name: "Wordpress-Traefik"
-  version: "999.5"
+  version: "999_aa"
   description: "Blog tool, publishing platform and CMS"
   uuid: Wordpress-0
   minimum_rancher_version: v0.51.0
