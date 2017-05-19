@@ -9,7 +9,7 @@ octotunnel:
     REMOTE_USER: ${REMOTE_USER}
     REMOTE_HOST: ${REMOTE_HOST}
   ports:
-  - "${SSH_PORT}:22"
+  - "${LOCAL_PORT}:${LOCAL_PORT}"
 
   labels:
     io.rancher.container.hostname_override: container_name
