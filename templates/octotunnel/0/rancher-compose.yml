@@ -59,7 +59,9 @@
       type: "string"
     - variable: "external_link"
       description: |
+        Rancher
         stack/service link or external service link
+        if the forwarded port is inside the rancher
         cluster.
       label: "External stack/service"
       default: "es/elasticsearch-clients"
