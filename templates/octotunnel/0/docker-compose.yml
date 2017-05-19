@@ -1,0 +1,18 @@
+octotunnel:
+  image: joshuacox/mktunnel:${TAG}
+  environment:
+    KEY_ECDSA: ${KEY_ECDSA}
+    MONITOR_PORT: ${MONITOR_PORT}
+    LOCAL_PORT: ${LOCAL_PORT}
+    FORWARDED_PORT: ${FORWARDED_PORT}
+    REMOTE_PORT: ${REMOTE_PORT}
+    REMOTE_USER: ${REMOTE_USER}
+    REMOTE_HOST: ${REMOTE_HOST}
+  ports:
+  - "${SSH_PORT}:22"
+
+  labels:
+    io.rancher.container.hostname_override: container_name
+    io.rancher.scheduler.affinity:host_label: ${host_label}
+  external_links:
+    - ${external_link}:extlink
