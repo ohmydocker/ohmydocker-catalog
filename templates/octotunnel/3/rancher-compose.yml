@@ -1,0 +1,81 @@
+.catalog:
+  name: "OctoTunnel"
+  version: "0.0.6"
+  description: "OctoTunnel"
+  questions:
+    - variable: "host_label"
+      description: "Host label where to run the forwarded service."
+      label: "Host label:"
+      required: true
+      default: "public=true"
+      type: "string"
+    - variable: "TAG"
+      description: "either latest or rancher for now see here https://hub.docker.com/r/joshuacox/octotunnel/tags/"
+      label: "tag:"
+      required: true
+      default: "rancher"
+      type: "string"
+    - variable: "KEY_ECDSA"
+      description: "where the KEY represents an ecdsa ssh key"
+      label: "ECDSA Key:"
+      required: false
+      default: ""
+      type: "multiline"
+    - variable: "KEY_DSA"
+      description: "where the KEY represents a dsa ssh key"
+      label: "DSA Key:"
+      required: false
+      default: ""
+      type: "multiline"
+    - variable: "KEY_RSA"
+      description: "where the KEY represents a dsa ssh key"
+      label: "RSA Key:"
+      required: false
+      default: ""
+      type: "multiline"
+    - variable: "MONITOR_PORT"
+      description: "ssh monitoring port"
+      label: "monitor:"
+      required: true
+      default: ""
+      type: "string"
+    - variable: "LOCAL_PORT"
+      description: "local port to host the forwarded service"
+      label: "localport:"
+      required: true
+      default: ""
+      type: "string"
+    - variable: "FORWARDED_PORT"
+      description: "forwarded port from external host to forward"
+      label: "forwarded_port:"
+      required: true
+      default: ""
+      type: "string"
+    - variable: "REMOTE_PORT"
+      description: "remote ssh port to tunnel into the host with the forwarded service"
+      label: "remote_port:"
+      required: true
+      default: ""
+      type: "string"
+    - variable: "REMOTE_USER"
+      description: "remote ssh user to tunnel into the host with the forwarded service"
+      label: "remote_user:"
+      required: true
+      default: ""
+      type: "string"
+    - variable: "REMOTE_HOST"
+      description: "remote ssh host with the forwarded service"
+      label: "remote_host:"
+      required: true
+      default: ""
+      type: "string"
+    - variable: "external_link"
+      description: |
+        Rancher
+        stack/service link or external service link
+        if the forwarded port is inside the rancher
+        cluster.
+      label: "External stack/service"
+      default: "es/elasticsearch-clients"
+      required: false
+      type: "service"
