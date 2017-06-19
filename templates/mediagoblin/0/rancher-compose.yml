@@ -12,13 +12,13 @@ catalog:
         description: "Hostname to use for the Thalhalla TodoMVC list"
         label: "Thalhalla TodoMVC Hostname"
         required: true
-        default: "todomvc"
+        default: "mediagoblin"
         type: "string"
       - variable: "MEDIAGOBLIN_DOMAIN"
         description: "Domain to use for the Thalhalla store server"
         label: "MEDIAGOBLIN Domain"
         required: true
-        default: "thalhalla.net"
+        default: ""
         type: "string"
       - variable: "MEDIAGOBLIN_TAG"
         description: "The Docker Tag for the Thalhalla TodoMVC server"
