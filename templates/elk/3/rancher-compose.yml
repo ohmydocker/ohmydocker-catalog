@@ -57,37 +57,37 @@
       required: true
       default: "https://raw.githubusercontent.com/WebHostingCoopTeam/keys/master/keys"
       type: "string"
-      - variable: "VOLUME_DRIVER"
-        description: "The VOLUME driver to associate with this server"
-        label: "VOLUME Driver"
-        required: true
-        default: "rancher-nfs"
-        type: enum
-        options: # List of options if using type of `enum`
-          - rancher-nfs
-          - rancher-efs
-          - rancher-ebs
-          - convoy-nfs
-          - convoy-efs
-          - convoy-ebs
-      - variable: "ESDATA"
-        description: "The Data Volume name to associate with this server"
-        label: "Data Volume Name"
-        required: true
-        default: "ESDATA"
-        type: "string"
-      - variable: "ESCONFIG"
-        description: "The Config Volume name to associate with this server"
-        label: "Config Volume Name"
-        required: true
-        default: "ESCONFIG"
-        type: "string"
-      - variable: "RANCHERBIN"
-        description: "The Rancher bin Volume name to associate with this server"
-        label: "Rancher bin Volume Name"
-        required: true
-        default: "RANCHERBIN"
-        type: "string"
+    - variable: "VOLUME_DRIVER"
+      description: "The VOLUME driver to associate with this server"
+      label: "VOLUME Driver"
+      required: true
+      default: "rancher-nfs"
+      type: enum
+      options: # List of options if using type of `enum`
+        - rancher-nfs
+        - rancher-efs
+        - rancher-ebs
+        - convoy-nfs
+        - convoy-efs
+        - convoy-ebs
+    - variable: "ESDATA"
+      description: "The Data Volume name to associate with this server"
+      label: "Data Volume Name"
+      required: true
+      default: "ESDATA"
+      type: "string"
+    - variable: "ESCONFIG"
+      description: "The Config Volume name to associate with this server"
+      label: "Config Volume Name"
+      required: true
+      default: "ESCONFIG"
+      type: "string"
+    - variable: "RANCHERBIN"
+      description: "The Rancher bin Volume name to associate with this server"
+      label: "Rancher bin Volume Name"
+      required: true
+      default: "RANCHERBIN"
+      type: "string"
 
     - variable: "collector_inputs"
       description: |
