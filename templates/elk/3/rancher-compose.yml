@@ -1,0 +1,169 @@
+.catalog:
+  name: "Elkstack"
+  version: "0.2.6"
+  description: "Elasticsearch. You know, for search, Logstash for stashing logs, and Kibana for displaying it all"
+  questions:
+    - variable: "KIBANA_HOST"
+      description: "Hostname to use for the KIBANA server"
+      label: "KIBANA Hostname"
+      required: true
+      default: "kibana"
+      type: "string"
+    - variable: "KIBANA_DOMAIN"
+      description: "Domain to use for the KIBANA server"
+      label: "KIBANA Domain"
+      required: true
+      default: "example.com"
+      type: "string"
+    - variable: "KOPF_HOST"
+      description: "Hostname to use for the KOPF server"
+      label: "KOPF Hostname"
+      required: true
+      default: "kopf"
+      type: "string"
+    - variable: cluster_name
+      description: "Unique name to assign to your Elasticsearch cluster."
+      label: "Cluster Name"
+      type: "string"
+      required: true
+      default: "es"
+    - variable: "kibana_port"
+      label: "Kibana Port"
+      description: "Unique public port for kibana"
+      type: "int"
+      default: 5601
+      required: true
+    - variable: "kopf_port"
+      label: "KOPF Port"
+      description: "Unique public port for kopf"
+      type: "int"
+      default: 15080
+      required: true
+    - variable: "host_label"
+      description: "Host label where to run the kibana endpoint service."
+      label: "Host label:"
+      required: true
+      default: "public=true"
+      type: "string"
+    - variable: "SSH_PORT"
+      description: "Port to host SSH on externally"
+      label: "SSH port:"
+      required: true
+      default: "2222"
+      type: "int"
+    - variable: "KEY_URL"
+      description: "where the KEY_URL represents an url where the container can download a list pubs that can be put into the .ssh/authorized_keys file and have access to elastic search through the ssh portal"
+      label: "Key Url:"
+      required: true
+      default: "https://raw.githubusercontent.com/WebHostingCoopTeam/keys/master/keys"
+      type: "string"
+    - variable: "VOLUME_DRIVER"
+      description: "The VOLUME driver to associate with this server (convoy-nfs,convoy-efs,convoy-ebs)"
+      label: "VOLUME Driver"
+      required: true
+      default: "convoy-nfs"
+      type: "string"
+
+    - variable: "collector_inputs"
+      description: |
+        Logstash collection tier inputs. These will be added
+        directly to input { } section of logstash.conf
+      label: "Logstash inputs"
+      type: "multiline"
+      required: true
+      default: |
+        udp {
+          port => 5000
+          codec => "json"
+        }
+    - variable: "indexer_filters"
+      description: |
+        Logstash indexing tier filters. These will be added
+        directly to filter { } section of logstash.conf
+      label: "Logstash filters"
+      type: "multiline"
+      required: false
+      default: ""
+    - variable: "indexer_outputs"
+      description: |
+        Logstash indexing tier outputs. These will be added
+        directly to output { } section of logstash.conf
+      label: "Logstash outputs"
+      type: "multiline"
+      required: true
+      default: |
+        elasticsearch {
+          hosts => ["elasticsearch:9200"]
+        }
+        stdout {
+          codec => rubydebug
+        }
+logstash-indexer:
+  metadata:
+    logstash:
+      inputs: |
+        redis {
+          host => "redis"
+          port => "6379"
+          data_type => "list"
+          key => "logstash"
+        }
+      filters: |
+        ${indexer_filters}
+      outputs: |
+        ${indexer_outputs}
+logstash-collector:
+  metadata:
+    logstash:
+      inputs: |
+        ${collector_inputs}
+      outputs: |
+        redis {
+          host => "redis"
+          port => "6379"
+          data_type => "list"
+          key => "logstash"
+        }
+
+nginx-proxy:
+  metadata:
+    nginx:
+      conf:
+        servername: "kibana"
+        upstream_port: 5601
+  health_check:
+    port: 80
+    interval: 30000
+    unhealthy_threshold: 9
+    strategy: none
+    response_timeout: 9000
+    healthy_threshold: 2
+
+elasticsearch-masters:
+  metadata:
+    elasticsearch:
+      yml:
+        cluster.name: "${cluster_name}"
+        node.name: "$${HOSTNAME}"
+        node.data: "false"
+        node.master: "true"
+        network.host: "_site_"
+elasticsearch-datanodes:
+  metadata:
+    elasticsearch:
+      yml:
+        cluster.name: "${cluster_name}"
+        node.name: "$${HOSTNAME}"
+        node.data: "true"
+        node.master: "false"
+        http.enabled: "false"
+        network.host: "_site_"
+elasticsearch-clients:
+  metadata:
+    elasticsearch:
+      yml:
+       cluster.name: "${cluster_name}"
+       node.name: "$${HOSTNAME}"
+       node.data: "false"
+       node.master: "false"
+       network.host: "_site_"
