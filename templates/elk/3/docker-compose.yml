@@ -12,16 +12,16 @@ elasticsearch-datavolume-masters:
     io.rancher.container.start_once: true
   volume_driver: ${VOLUME_DRIVER}
   volumes:
-    - ESDATA:/usr/share/elasticsearch/data
-    - ESCONFIG:/usr/share/elasticsearch/config
-    - RANCHERBIN:/opt/rancher/bin
+    - ${ESDATA}:/usr/share/elasticsearch/data
+    - ${ESCONFIG}:/usr/share/elasticsearch/config
+    - ${RANCHERBIN}:/opt/rancher/bin
   entrypoint: /bin/true
-  image: elasticsearch:2.2.1
+  image: elasticsearch:2.4.3-alpine
 elasticsearch-base-master:
   labels:
     elasticsearch.master.config.version: '0'
     io.rancher.container.hostname_override: container_name
-  image: elasticsearch:2.2.1
+  image: elasticsearch:2.4.3-alpine
   net: "container:elasticsearch-masters"
   volumes_from:
     - elasticsearch-datavolume-masters
@@ -46,16 +46,16 @@ elasticsearch-datavolume-datanode:
     io.rancher.container.start_once: true
   volume_driver: ${VOLUME_DRIVER}
   volumes:
-    - ESDATA:/usr/share/elasticsearch/data
-    - ESCONFIG:/usr/share/elasticsearch/config
-    - RANCHERBIN:/opt/rancher/bin
+    - ${ESDATA}:/usr/share/elasticsearch/data
+    - ${ESCONFIG}:/usr/share/elasticsearch/config
+    - ${RANCHERBIN}:/opt/rancher/bin
   entrypoint: /bin/true
-  image: elasticsearch:2.2.1
+  image: elasticsearch:2.4.3-alpine
 elasticsearch-base-datanode:
   labels:
     elasticsearch.datanode.config.version: '0'
     io.rancher.container.hostname_override: container_name
-  image: elasticsearch:2.2.1
+  image: elasticsearch:2.4.3-alpine
   links:
   - elasticsearch-masters:es-masters
   entrypoint:
@@ -81,16 +81,16 @@ elasticsearch-datavolume-clients:
     io.rancher.container.start_once: true
   volume_driver: ${VOLUME_DRIVER}
   volumes:
-    - ESDATA:/usr/share/elasticsearch/data
-    - ESCONFIG:/usr/share/elasticsearch/config
-    - RANCHERBIN:/opt/rancher/bin
+    - ${ESDATA}:/usr/share/elasticsearch/data
+    - ${ESCONFIG}:/usr/share/elasticsearch/config
+    - ${RANCHERBIN}:/opt/rancher/bin
   entrypoint: /bin/true
-  image: elasticsearch:2.2.1
+  image: elasticsearch:2.4.3-alpine
 elasticsearch-base-clients:
   labels:
     elasticsearch.client.config.version: '0'
     io.rancher.container.hostname_override: container_name
-  image: elasticsearch:2.2.1
+  image: elasticsearch:2.4.3-alpine
   volumes_from:
     - elasticsearch-datavolume-clients
   net: "container:elasticsearch-clients"
@@ -100,8 +100,6 @@ elasticsearch-base-clients:
 
 kopf:
   image: rancher/kopf:v0.4.0
-  ports:
-  - "${kopf_port}:80"
   environment:
     KOPF_SERVER_NAME: 'es.dev'
     KOPF_ES_SERVERS: 'es-clients:9200'
@@ -152,10 +150,11 @@ nginx-proxy:
 kibana4:
   restart: always
   tty: true
-  image: kibana:4.4.2
+  image: docker.elastic.co/kibana/kibana:5.4.2
   net: "container:nginx-proxy"
   stdin_open: true
   environment:
+    SERVER_NAME: ${KIBANA_HOST}.${KIBANA_DOMAIN}
     ELASTICSEARCH_URL: "http://elasticsearch:9200"
   labels:
     io.rancher.container.hostname_override: container_name
