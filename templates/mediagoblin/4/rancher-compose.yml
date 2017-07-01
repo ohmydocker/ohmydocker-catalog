@@ -1,0 +1,90 @@
+version: '2'
+catalog:
+  name: "mediagoblin"
+  version: 0.0.5
+  description: |
+    MediaGoblin is a free software media publishing platform that anyone can run.
+    You can think of it as a decentralized alternative to Flickr, YouTube, SoundCloud, etc.
+  uuid: mediagoblin-0-1
+  minimum_rancher_version: v0.51.0
+  questions:
+      - variable: "GOBLIN_USER"
+        description: "The admin user of the mediagoblin server"
+        label: "admin user"
+        required: true
+        default: "admin"
+        type: "string"
+      - variable: "GOBLIN_PASSWORD"
+        description: "The admin user password of the mediagoblin server"
+        label: "admin password"
+        required: true
+        default: ""
+        type: "password"
+      - variable: "GOBLIN_EMAIL"
+        description: "The admin user email of the mediagoblin server"
+        label: "admin email"
+        required: true
+        default: "admin@example.com"
+        type: "string"
+      - variable: "MEDIAGOBLIN_HOST"
+        description: "Hostname to use for the Thalhalla TodoMVC list"
+        label: "Thalhalla TodoMVC Hostname"
+        required: true
+        default: "mediagoblin"
+        type: "string"
+      - variable: "MEDIAGOBLIN_DOMAIN"
+        description: "Domain to use for the Thalhalla store server"
+        label: "MEDIAGOBLIN Domain"
+        required: true
+        default: ""
+        type: "string"
+      - variable: "MEDIAGOBLIN_TAG"
+        description: "The Docker Tag for the Thalhalla TodoMVC server"
+        label: "nginx tag"
+        required: true
+        default: "latest"
+        type: "string"
+      - variable: "MEDIAGOBLIN_DEBUG"
+        description: "include debug data in stdout"
+        label: "debug"
+        required: false
+        default: "debug=true"
+        type: "string"
+      - variable: host_label
+        label: "Host Label to run mediagoblin"
+        description: |
+          Host label to use as mediagoblin 'value' tag.
+          Example: 'mediagoblin=true'
+        required: false
+        default: "private=true"
+        type: "string"
+      - variable: "VOLUME_DRIVER"
+        description: "The VOLUME driver to associate with this server"
+        label: "VOLUME Driver"
+        required: true
+        default: "rancher-nfs"
+        type: enum
+        options: # List of options if using type of `enum`
+          - rancher-nfs
+          - rancher-efs
+          - rancher-ebs
+          - convoy-nfs
+          - convoy-efs
+          - convoy-ebs
+      - variable: "VOLUME_NAME"
+        description: "The VOLUME name to associate with this server"
+        label: "VOLUME Name"
+        required: true
+        default: "MEDIAGOBLIN"
+        type: "string"
+services:
+  mediagoblin:
+    scale: 1
+    health_check:
+      port: 80
+      interval: 30000
+      initializing_timeout: 360000
+      unhealthy_threshold: 9
+      strategy: none
+      healthy_threshold: 2
+      response_timeout: 9000
