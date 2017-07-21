@@ -24,18 +24,12 @@ catalog:
       type: "string"
 
 services:
-  kibana-vip:
+  kibana:
     health_check:
-      port: 80
+      port: 5601
       interval: 30000
       initializing_timeout: 360000
       unhealthy_threshold: 3
       strategy: none
       healthy_threshold: 2
       response_timeout: 9000
-  nginx-proxy:
-    metadata:
-      nginx:
-        conf:
-          servername: "kibana"
-          upstream_port: 5601
