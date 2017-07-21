@@ -24,7 +24,7 @@ catalog:
       type: "string"
 
 services:
-  nginx-proxy:
+  kibana-vip:
     health_check:
       port: 80
       interval: 30000
@@ -33,6 +33,7 @@ services:
       strategy: none
       healthy_threshold: 2
       response_timeout: 9000
+  nginx-proxy:
     metadata:
       nginx:
         conf:
