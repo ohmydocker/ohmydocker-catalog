@@ -3,14 +3,6 @@ version: '2'
 services:
 
   wordpress:
-    health_check:
-      port: 80
-      interval: 2000
-      initializing_timeout: 60000
-      unhealthy_threshold: 3
-      strategy: recreate
-      healthy_threshold: 2
-      response_timeout: 2000
     image: ohmydocker/docker-wordpress-wp-cli:adjustingalternatives
     labels:
       io.rancher.scheduler.affinity:host_label: ${host_label}
