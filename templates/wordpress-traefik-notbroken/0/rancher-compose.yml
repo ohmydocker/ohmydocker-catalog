@@ -94,4 +94,4 @@ services:
       strategy: none
       healthy_threshold: 2
       response_timeout: 9000
-      requestLine: "GET \"/\" \"HTTP/1.1\\r\\nHost: aa.webtechhq.com\"
+      requestLine: 'GET / HTTP/1.1\r\nHost: aa.webtechhq.com'
