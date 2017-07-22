@@ -1,7 +1,7 @@
 version: '2'
 catalog:
   name: "Wordpress-Builder"
-  version: 0.0.0
+  version: "999.627-ab"
   description: "Adjusting Alternatives"
   uuid: Wordpress-Builder-0
   minimum_rancher_version: v0.51.0
