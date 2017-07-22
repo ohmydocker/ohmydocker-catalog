@@ -1,0 +1,16 @@
+kibana:
+  restart: always
+  tty: true
+  image: docker.elastic.co/kibana/kibana:5.5.0
+  stdin_open: true
+  environment:
+    ELASTICSEARCH_URL: "http://elasticsearch:9200"
+  labels:
+    io.rancher.container.hostname_override: container_name
+    traefik.enable: true
+    traefik.alias: ${KIBANA_HOST}
+    traefik.domain: ${KIBANA_DOMAIN}
+    traefik.acme: true
+    traefik.port: 5601
+  external_links:
+    - ${elasticsearch_source}:elasticsearch

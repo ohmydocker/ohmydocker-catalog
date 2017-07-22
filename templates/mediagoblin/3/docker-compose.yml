@@ -1,0 +1,30 @@
+version: '2'
+services:
+  mediagoblin:
+    image: ohmydocker/mediagoblin:${MEDIAGOBLIN_TAG}
+    labels:
+      io.rancher.scheduler.affinity:host_label: ${host_label}
+      io.rancher.container.hostname_override: container_name
+      io.rancher.container.pull_image: always
+      traefik.enable: true
+      traefik.alias: ${MEDIAGOBLIN_HOST}
+      traefik.domain: ${MEDIAGOBLIN_DOMAIN}
+      traefik.acme: true
+      traefik.port: 80
+    environment:
+      NGINX_HOST: ${MEDIAGOBLIN_HOST}.${MEDIAGOBLIN_DOMAIN}
+      NGINX_PORT: 80
+      GOBLIN_USER: ${GOBLIN_USER}
+      GOBLIN_PASSWORD: ${GOBLIN_PASSWORD}
+      GOBLIN_EMAIL: ${GOBLIN_EMAIL}
+  mediagoblin-datavolume:
+    image: busybox
+    labels:
+      io.rancher.container.hostname_override: container_name
+      io.rancher.scheduler.affinity:host_label: ${host_label}
+      io.rancher.container.start_once: true
+      io.rancher.container.pull_image: always
+    volume_driver: ${VOLUME_DRIVER}
+    volumes:
+      - ${VOLUME_NAME}:/var/lib/mediagoblin
+    command: /bin/true

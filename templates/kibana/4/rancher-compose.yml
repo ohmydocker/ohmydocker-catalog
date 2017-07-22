@@ -1,0 +1,35 @@
+version: '2'
+catalog:
+  name: "Kibana"
+  version: "5.3.0-rancher2"
+  description: "Kibana: Explore & Visualize Your Data"
+  questions:
+    - variable: "elasticsearch_source"
+      description: "Link to elasticsearch service or stack/service"
+      label: "Elasticsearch source"
+      type: "service"
+      required: true
+      default: "es/elasticsearch-clients"
+    - variable: "KIBANA_HOST"
+      description: "Hostname to use for Kibana"
+      label: "Kibana Hostname"
+      required: true
+      default: "kibana"
+      type: "string"
+    - variable: "KIBANA_DOMAIN"
+      description: "Domain to use for Kibana"
+      label: "Kibana Domain"
+      required: true
+      default: ""
+      type: "string"
+
+services:
+  kibana:
+    health_check:
+      port: 5601
+      interval: 30000
+      initializing_timeout: 360000
+      unhealthy_threshold: 3
+      strategy: none
+      healthy_threshold: 2
+      response_timeout: 9000
