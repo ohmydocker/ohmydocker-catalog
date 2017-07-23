@@ -1,28 +1,28 @@
 version: '2'
 catalog:
-  name: "Wordpress-Traefik"
-  version: "0.1.9-1"
-  description: "Blog tool, publishing platform and CMS"
-  uuid: Wordpress-0
+  name: "Wordpress-Builder"
+  version: "999.627-ab"
+  description: "Adjusting Alternatives"
+  uuid: Wordpress-Builder-0
   minimum_rancher_version: v0.51.0
   questions:
     - variable: "WORDPRESS_DOMAIN"
       description: "Domain for this Wordpress Site"
       label: "WP DOMAIN"
       required: true
-      default: "example.com"
+      default: "webtechhq.com"
       type: "string"
     - variable: "WORDPRESS_HOST"
       description: "Host for this Wordpress Site - do not include the domain (put that into the previous question)"
       label: "WP Host"
       required: true
-      default: "demo"
+      default: "aa"
       type: "string"
     - variable: "WORDPRESS_ADMIN_USER"
       description: "WP Admin Username"
       label: "WP Admin Username"
       required: true
-      default: "demoadmin"
+      default: "aa-admin"
       type: "string"
     - variable: "WORDPRESS_ADMIN_PASSWORD"
       description: "WP Admin Password"
@@ -34,31 +34,31 @@ catalog:
       description: "WP Admin Email address"
       label: "WP Admin Email"
       required: true
-      default: "james@webtechhq.com"
+      default: "james@ohmydocker.com"
       type: "string"
     - variable: "WORDPRESS_TITLE"
       description: "WP Site Title"
       label: "WP Site Title"
       required: true
-      default: "OhMyDocker Test Site"
+      default: "Adjusting Alternatives"
       type: "string"
     - variable: "WORDPRESS_TAGLINE"
       description: "WP Site Tagline"
       label: "WP Site Tagline"
       required: false
-      default: "Testing, always, Testing"
+      default: "Workers Compensation Insurance in New Mexico"
       type: "string"
     - variable: "VOLUME_NAME"
       description: "Work volume to save wordpress data"
       label: "Work volume:"
       required: true
-      default: "WORDPRESS"
+      default: "WP-AA-EXAMPLE"
       type: "string"
     - variable: "DB_VOLUME_NAME"
       description: "DB Work volume to save Wordpress data"
       label: "DB Work volume:"
       required: true
-      default: "WORDPRESS_DB"
+      default: "WP-AA_DB-EXAMPLE"
       type: "string"
     - variable: "VOLUME_DRIVER"
       description: "The VOLUME driver to associate with this server (convoy-nfs,convoy-efs,convoy-ebs)"
@@ -94,3 +94,4 @@ services:
       strategy: none
       healthy_threshold: 2
       response_timeout: 9000
+      request_line: "GET / HTTP/1.1\r\nHost: aa.webtechhq.com"
