@@ -1,0 +1,50 @@
+.catalog:
+  name: "reactiondemo"
+  version: 1.4.0-1
+  description: "E-commerce powered by reaction"
+  uuid: reaction-0
+  minimum_rancher_version: v0.51.0
+  questions:
+      - variable: "reaction_HOST"
+        description: "Hostname to use for the reaction server"
+        label: "reaction Hostname"
+        required: true
+        default: "reaction"
+        type: "string"
+      - variable: "reaction_DOMAIN"
+        description: "Domain to use for the reaction server"
+        label: "reaction Domain"
+        required: true
+        default: "example.com"
+        type: "string"
+      - variable: host_label
+        label: "Host Label to reaction Tags"
+        description: |
+          Host label to use as reaction 'value' tag.
+          Example: 'reaction=true'
+        required: false
+        default: "private=true"
+        type: "string"
+      - variable: REACTION_EMAIL
+        label: "reaction Email"
+        required: true
+        default: ""
+        type: "string"
+      - variable: REACTION_USER
+        label: "reaction User"
+        required: true
+        default: ""
+        type: "string"
+      - variable: REACTION_AUTH
+        label: "reaction Auth"
+        required: true
+        default: ""
+        type: "string"
+
+reaction:
+  scale: 1
+  retain_ip: true
+
+meango:
+  scale: 1
+  retain_ip: true
