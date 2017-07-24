@@ -1,6 +1,6 @@
 version: '2'
 services:
-  reaction-node:
+  reaction:
     image: reactioncommerce/reaction:v.1.4.0
     labels:
       io.rancher.scheduler.affinity:host_label: ${host_label}
