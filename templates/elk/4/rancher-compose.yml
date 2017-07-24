@@ -164,6 +164,12 @@ catalog:
               codec => rubydebug
             }
 
+        - variable: "host_label"
+          description: "Host label where to run the ssh service."
+          label: "Host label:"
+          required: true
+          default: "public=true"
+          type: "string"
 
 services:
 
