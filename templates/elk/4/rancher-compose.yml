@@ -1,0 +1,215 @@
+version: '2'
+catalog:
+    name: ElkStack
+    version: 0.2.7
+    description: Scalable Elasticsearch Cluster with extras
+
+    questions:
+        - variable: "cluster_name"
+          type: "string"
+          required: true
+          label: "Cluster name"
+          description: "Name of the Elasticsearch Cluster"
+          default: "es-cluster"
+
+        - variable: "es_tag"
+          type: "string"
+          required: true
+          label: "es tag"
+          description: "Tagged Version of the Elasticsearch Cluster"
+          default: "5.4.2"
+
+        - variable: "UPDATE_SYSCTL"
+          label: "Update host sysctl:"
+          description: |
+            Set true to avoid vm.max_map_count errors.
+            WARN: If set true, host param vm.max_map_count will be update to 262144.
+          default: false
+          required: true
+          type: enum
+          options:
+            - false
+            - true
+
+        - variable: "master_heap_size"
+          type: "string"
+          required: true
+          label: "Heap size (master nodes)"
+          description: "Heap size to be allocated for Java (mater nodes)"
+          default: "512m"
+
+        - variable: "master_mem_limit"
+          type: "int"
+          required: true
+          label: "Memory limit in byte (master nodes)"
+          description: "Memory limit in Byte per elasticsearch container. AT LEAST double the heap size! (master nodes)"
+          default: 1073741824
+
+        - variable: "data_heap_size"
+          type: "string"
+          required: true
+          label: "Heap size (data nodes)"
+          description: "Heap size to be allocated for Java (mater nodes)"
+          default: "512m"
+
+        - variable: "data_mem_limit"
+          type: "int"
+          required: true
+          label: "Memory limit in byte (data nodes)"
+          description: "Memory limit in Byte per elasticsearch container. AT LEAST double the heap size! (data nodes)"
+          default: 1073741824
+
+        - variable: "client_heap_size"
+          type: "string"
+          required: true
+          label: "Heap size (client nodes)"
+          description: "Heap size to be allocated for Java (mater nodes)"
+          default: "512m"
+
+        - variable: "client_mem_limit"
+          type: "int"
+          required: true
+          label: "Memory limit in byte (client nodes)"
+          description: "Memory limit in Byte per elasticsearch container. AT LEAST double the heap size! (client nodes)"
+          default: 1073741824
+
+        - variable: "minimum_master_nodes"
+          type: "int"
+          required: true
+          label: "# of minimum Master Nodes"
+          description: "Set the number of required master nodes to reach quorum. Sets initial scale to this value as well"
+          default: 3
+
+        - variable: "initial_data_nodes"
+          type: "int"
+          required: true
+          label: "# of initial data nodes"
+          description: "Set the initial number of data nodes"
+          default: 2
+
+        - variable: "initial_client_nodes"
+          type: "int"
+          required: true
+          label: "# of initial client nodes"
+          description: "Set the initial number of client nodes"
+          default: 1
+
+        - variable: "VOLUME_DRIVER"
+          description: "The VOLUME driver to associate with this server"
+          label: "VOLUME Driver"
+          required: true
+          default: "rancher-nfs"
+          type: enum
+          options:
+            - local
+            - rancher-nfs
+            - rancher-efs
+            - rancher-ebs
+
+        - variable: "KIBANA_HOST"
+          description: "Hostname to use for Kibana"
+          label: "Kibana Hostname"
+          required: true
+          default: "kibana"
+          type: "string"
+
+        - variable: "KIBANA_DOMAIN"
+          description: "Domain to use for Kibana"
+          label: "Kibana Domain"
+          required: true
+          default: ""
+          type: "string"
+
+        - variable: "SSH_PORT"
+          description: "Port to host SSH on externally"
+          label: "SSH port:"
+          required: true
+          default: "2222"
+          type: "int"
+
+        - variable: "collector_inputs"
+          description: |
+            Logstash collection tier inputs. These will be added
+            directly to input { } section of logstash.conf
+          label: "Logstash inputs"
+          type: "multiline"
+          required: true
+          default: |
+            udp {
+              port => 5000
+              codec => "json"
+            }
+
+        - variable: "indexer_filters"
+          description: |
+            Logstash indexing tier filters. These will be added
+            directly to filter { } section of logstash.conf
+          label: "Logstash filters"
+          type: "multiline"
+          required: false
+          default: ""
+
+        - variable: "indexer_outputs"
+          description: |
+            Logstash indexing tier outputs. These will be added
+            directly to output { } section of logstash.conf
+          label: "Logstash outputs"
+          type: "multiline"
+          required: true
+          default: |
+            elasticsearch {
+              hosts => ["elasticsearch.rancher.internal:9200"]
+            }
+            stdout {
+              codec => rubydebug
+            }
+
+
+services:
+
+  es-master:
+    scale: ${minimum_master_nodes}
+
+  es-data:
+    scale: ${initial_data_nodes}
+
+  es-client:
+    scale: ${initial_client_nodes}
+
+  kibana:
+    health_check:
+      port: 5601
+      interval: 30000
+      initializing_timeout: 360000
+      unhealthy_threshold: 3
+      strategy: none
+      healthy_threshold: 2
+      response_timeout: 9000
+
+  logstash-indexer:
+    metadata:
+      logstash:
+        inputs: |
+          redis {
+            host => "redis.rancher.internal"
+            port => "6379"
+            data_type => "list"
+            key => "logstash"
+          }
+        filters: |
+          ${indexer_filters}
+        outputs: |
+          ${indexer_outputs}
+
+  logstash-collector:
+    metadata:
+      logstash:
+        inputs: |
+          ${collector_inputs}
+        outputs: |
+          redis {
+            host => "redis.rancher.internal"
+            port => "6379"
+            data_type => "list"
+            key => "logstash"
+          }
