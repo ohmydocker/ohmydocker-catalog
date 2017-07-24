@@ -5,6 +5,11 @@ services:
     labels:
       io.rancher.scheduler.affinity:host_label: ${host_label}
       io.rancher.container.pull_image: always
+      traefik.enable: true
+      traefik.alias: ${REDMINE_HOST}
+      traefik.domain: ${REDMINE_DOMAIN}
+      traefik.acme: true
+      traefik.port: 3000
     environment:
       MONGO_URL: "mongodb://meango/reaction"
       ROOT_URL: "http://${reaction_HOST}.${reaction_DOMAIN}"
