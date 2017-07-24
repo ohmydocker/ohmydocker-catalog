@@ -4,19 +4,17 @@ services:
     image: reactioncommerce/reaction:v1.4.0
     labels:
       io.rancher.scheduler.affinity:host_label: ${host_label}
-      io.rancher.container.pull_image: always
       traefik.enable: true
-      traefik.alias: ${REDMINE_HOST}
-      traefik.domain: ${REDMINE_DOMAIN}
+      traefik.alias: ${REACTION_HOST}
+      traefik.domain: ${REACTION_DOMAIN}
       traefik.acme: true
       traefik.port: 3000
     environment:
       MONGO_URL: "mongodb://meango/reaction"
-      ROOT_URL: "http://${reaction_HOST}.${reaction_DOMAIN}"
+      ROOT_URL: "http://${REACTION_HOST}.${REACTION_DOMAIN}"
       REACTION_EMAIL: ${REACTION_EMAIL}
       REACTION_USER: ${REACTION_USER}
       REACTION_AUTH: ${REACTION_AUTH}
-
 
   meango:
     restart: always
@@ -29,7 +27,6 @@ services:
       io.rancher.scheduler.affinity:host_label: ${host_label}
       io.rancher.container.hostname_override: container_name
       io.rancher.sidekicks: meango-datavolume
-      io.rancher.container.pull_image: always
     volumes_from:
       - meango-datavolume
   meango-datavolume:

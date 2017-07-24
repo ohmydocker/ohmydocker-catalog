@@ -5,17 +5,17 @@
   uuid: reaction-0
   minimum_rancher_version: v0.51.0
   questions:
-      - variable: "reaction_HOST"
+      - variable: "REACTION_HOST"
         description: "Hostname to use for the reaction server"
         label: "reaction Hostname"
         required: true
         default: "reaction"
         type: "string"
-      - variable: "reaction_DOMAIN"
+      - variable: "REACTION_DOMAIN"
         description: "Domain to use for the reaction server"
         label: "reaction Domain"
         required: true
-        default: "example.com"
+        default: ""
         type: "string"
       - variable: host_label
         label: "Host Label to reaction Tags"
@@ -25,17 +25,17 @@
         required: false
         default: "private=true"
         type: "string"
-      - varable: REACTION_EMAIL
+      - variable: REACTION_EMAIL
         label: "reaction Email"
         required: true
         default: ""
         type: "string"
-      - varable: REACTION_USER
+      - variable: REACTION_USER
         label: "reaction User"
         required: true
         default: ""
         type: "string"
-      - varable: REACTION_AUTH
+      - variable: REACTION_AUTH
         label: "reaction Auth"
         required: true
         default: ""
@@ -44,6 +44,14 @@
 reaction:
   scale: 1
   retain_ip: true
+  health_check:
+    healthy_threshold: 2
+    response_timeout: 5000
+    port: 3000
+    unhealthy_threshold: 3
+    interval: 5000
+    strategy: recreate
+    request_line: GET / # HTTP/1.0
 
 meango:
   scale: 1
