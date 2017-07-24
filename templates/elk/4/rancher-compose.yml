@@ -173,7 +173,7 @@ services:
   es-data:
     scale: ${initial_data_nodes}
 
-  es-client:
+  elasticsearch:
     scale: ${initial_client_nodes}
 
   kibana:
