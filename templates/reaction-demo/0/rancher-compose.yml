@@ -39,7 +39,7 @@
         label: "reaction Auth"
         required: true
         default: ""
-        type: "string"
+        type: "password"
 
 reaction:
   scale: 1
