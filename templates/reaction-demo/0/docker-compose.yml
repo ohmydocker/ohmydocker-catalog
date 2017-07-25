@@ -17,12 +17,13 @@ services:
       REACTION_AUTH: ${REACTION_AUTH}
 
   meango:
+    command: mongod --storageEngine=wiredTiger
     restart: always
     environment:
       MONGO_SERVICE_NAME: meango
       CATTLE_SCRIPT_DEBUG: ${debug}
     tty: true
-    image: mongo:3.2
+    image: mongo:3.4
     labels:
       io.rancher.scheduler.affinity:host_label: ${host_label}
       io.rancher.container.hostname_override: container_name
