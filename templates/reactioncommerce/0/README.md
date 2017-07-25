@@ -1,4 +1,4 @@
-#[ReactionCommerce](http://reactioncommerce.com/)
+# [ReactionCommerce](http://reactioncommerce.com/)
 
 ### Docs
 
