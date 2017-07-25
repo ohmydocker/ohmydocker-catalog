@@ -41,17 +41,6 @@ catalog:
         required: true
         default: ""
         type: "password"
-      - variable: "VOLUME_DRIVER"
-        description: "The VOLUME driver to associate with this server"
-        label: "VOLUME Driver"
-        required: true
-        default: "local"
-        type: enum
-        options:
-          - local
-          - rancher-nfs
-          - rancher-efs
-          - rancher-ebs
       - variable: "mongo_link"
         description: |
           MongoDB external service link
