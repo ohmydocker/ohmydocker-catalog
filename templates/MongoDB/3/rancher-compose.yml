@@ -36,9 +36,15 @@ catalog:
         - rancher-nfs
         - rancher-efs
         - rancher-ebs
+    - variable: mongo_scale
+      description: "How many containers the MongoDB will scale to?"
+      label: "mongo scale"
+      type: "integer"
+      required: true
+      default: "3"
 services:
   mongo-cluster:
-    scale: 3
+    scale: ${mongo_scale}
     retain_ip: true
     metadata:
       mongo:
