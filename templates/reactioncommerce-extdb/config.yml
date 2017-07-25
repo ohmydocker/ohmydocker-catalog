@@ -1,4 +1,4 @@
-name: Reaction Commerce External Link
+name: Reaction Commerce External DB
 description: |
   E-commerce powered by Reaction with externally linked mongoDB
 version: 1.4.0-rancher1
