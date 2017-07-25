@@ -39,7 +39,7 @@ catalog:
     - variable: mongo_scale
       description: "How many containers the MongoDB will scale to?"
       label: "mongo scale"
-      type: "integer"
+      type: "int"
       required: true
       default: "3"
 services:
