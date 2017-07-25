@@ -2,6 +2,7 @@ version: '2'
 services:
   reaction:
     image: reactioncommerce/reaction:v1.4.0
+    restart: always
     labels:
       io.rancher.scheduler.affinity:host_label: ${host_label}
       traefik.enable: true
@@ -27,15 +28,9 @@ services:
     labels:
       io.rancher.scheduler.affinity:host_label: ${host_label}
       io.rancher.container.hostname_override: container_name
-      io.rancher.sidekicks: meango-datavolume
-    volumes_from:
-      - meango-datavolume
-  meango-datavolume:
-    labels:
-      io.rancher.scheduler.affinity:host_label: ${host_label}
-      io.rancher.container.hostname_override: container_name
-      io.rancher.container.start_once: true
     volumes:
-      - /data/db
-    entrypoint: /bin/true
-    image: busybox
+      - meangodata:/data/db
+
+volumes:
+  meangodata:
+    driver: ${VOLUME_DRIVER}

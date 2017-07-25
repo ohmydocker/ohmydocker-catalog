@@ -1,6 +1,6 @@
 .catalog:
   name: "reactiondemo"
-  version: 1.4.0
+  version: 1.4.0-rancher1
   description: "E-commerce powered by reaction"
   uuid: reaction-0
   minimum_rancher_version: v0.51.0
@@ -40,6 +40,17 @@
         required: true
         default: ""
         type: "password"
+      - variable: "VOLUME_DRIVER"
+        description: "The VOLUME driver to associate with this server"
+        label: "VOLUME Driver"
+        required: true
+        default: "local"
+        type: enum
+        options:
+          - local
+          - rancher-nfs
+          - rancher-efs
+          - rancher-ebs
 
 reaction:
   scale: 1
