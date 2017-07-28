@@ -1,0 +1,4 @@
+name: "Kibana-debug"
+description: "Visualization dashboard"
+version: "5.5.0-rancher1"
+category: ELK
