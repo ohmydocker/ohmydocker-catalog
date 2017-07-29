@@ -24,18 +24,36 @@ other setups.  Issues, PRs, etc are welcome there.
 ### Baking in a theme and/or plugin
 
 The official Docs
+[Install](https://docs.reactioncommerce.com/reaction-docs/master/installation)
+
+Most of the configuration can be done with the environment variables
+which are asked for below in the quesions, there are custom configs you
+can edit though:
 [Configuring Reaction](https://docs.reactioncommerce.com/reaction-docs/master/configuration)
+
+Theme creation:
 [Creating a theme](https://docs.reactioncommerce.com/reaction-docs/master/creating-a-theme)
-and
+
+and plugins:
 [Intro to creating a plugin](https://docs.reactioncommerce.com/reaction-docs/master/plugin-intro-1)
-are a good place to start, then create a Dockerfile in your theme or
-plugin something like this:
+
+### Quick start
 
 ```
-FROM reactioncommerce/reaction:v1.4.1
+npm install -g reaction-cli
+reaction init
+```
 
-COPY mytheme imports/plugins/custom/
-COPY myplugin imports/plugins/custom/
+### Add theme and plugin
+
+Which is simple as adding your theme in the
+`imports/plugins/custom` directory
+
+```
+reaction build mycustom
+docker tag mycustom dockerhubuser/mycustom:test1
+docker push dockerhubuser/mycustom:test1
+
 ```
 
 Now swap out the `Image` variable below
