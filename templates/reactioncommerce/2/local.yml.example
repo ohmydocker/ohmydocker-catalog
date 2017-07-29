@@ -1,0 +1,11 @@
+Values:
+  mongo_link: ""
+host_label: 'private=true'
+REACTION_HOST: 'localhost'
+REACTION_DOMAIN: 'localdomain'
+REACTION_USER: 'admin'
+REACTION_AUTH: 'AUTH'
+REACTION_EMAIL: 'admin@example.com'
+MONGO_DB: 'mongo'
+debug: 1
+VOLUME_DRIVER: local
