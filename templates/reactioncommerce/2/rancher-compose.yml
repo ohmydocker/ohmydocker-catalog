@@ -1,7 +1,7 @@
 version: '2'
 catalog:
   name: "reactiondemo"
-  version: 1.4.0-rancher2
+  version: 1.4.0-rancher3
   description: "E-commerce powered by reaction"
   uuid: reaction-0
   minimum_rancher_version: v0.51.0

@@ -6,6 +6,7 @@ REACTION_DOMAIN: 'localdomain'
 REACTION_USER: 'admin'
 REACTION_AUTH: 'AUTH'
 REACTION_EMAIL: 'admin@example.com'
+REACTION_IMAGE: 'reactioncommerce/reaction:v1.4.1'
 MONGO_DB: 'mongo'
 debug: 1
 VOLUME_DRIVER: local

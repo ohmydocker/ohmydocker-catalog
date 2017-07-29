@@ -1,7 +1,7 @@
 version: '2'
 services:
   reaction:
-    image: reactioncommerce/reaction:v1.4.0
+    image: "${REACTION_IMAGE}"
     restart: always
     labels:
       io.rancher.scheduler.affinity:host_label: ${host_label}
