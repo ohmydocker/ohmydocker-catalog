@@ -19,7 +19,7 @@ catalog:
         default: "local"
         type: "string"
       - variable: "REACTION_IMAGE"
-        default: "reactioncommerce/reaction:v1.4.0"
+        default: "reactioncommerce/reaction:v1.4.1"
         description: "Image to use for the reaction server"
         label: "reaction image"
         required: true
