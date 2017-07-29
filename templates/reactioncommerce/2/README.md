@@ -32,7 +32,7 @@ are a good place to start, then create a Dockerfile in your theme or
 plugin something like this:
 
 ```
-FROM reactioncommerce/reaction:v1.4.0
+FROM reactioncommerce/reaction:v1.4.1
 
 COPY mytheme imports/plugins/custom/
 COPY myplugin imports/plugins/custom/
