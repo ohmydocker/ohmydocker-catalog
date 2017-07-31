@@ -1,0 +1,12 @@
+Values:
+  mongo_link: ""
+host_label: 'private=true'
+METEOR_HOST: 'localhost'
+METEOR_DOMAIN: 'localdomain'
+METEOR_USER: 'admin'
+METEOR_AUTH: 'AUTH'
+METEOR_EMAIL: 'admin@example.com'
+METEOR_IMAGE: 'reactioncommerce/reaction:v1.4.1'
+MONGO_DB: 'mongo'
+debug: 1
+VOLUME_DRIVER: local
