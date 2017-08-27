@@ -1,0 +1,11 @@
+kibana:
+  restart: always
+  tty: true
+  image: docker.elastic.co/kibana/kibana:5.5.0
+  stdin_open: true
+  environment:
+    ELASTICSEARCH_URL: "http://elasticsearch:9200"
+  labels:
+    io.rancher.container.hostname_override: container_name
+  external_links:
+    - ${elasticsearch_source}:elasticsearch
