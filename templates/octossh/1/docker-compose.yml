@@ -1,0 +1,17 @@
+octossh:
+  image: joshuacox/octossh:${TAG}
+  environment:
+    KEY_URL: ${KEY_URL}
+  ports:
+  - "${SSH_PORT}:22"
+  labels:
+    io.rancher.container.hostname_override: container_name
+    io.rancher.scheduler.affinity:host_label: ${host_label}
+  external_links:
+    - ${external_link}:extlink
+    - ${external_link2}:extlink2
+    - ${external_link3}:extlink3
+    - ${external_link4}:extlink4
+    - ${external_link5}:extlink5
+    - ${external_link6}:extlink6
+    - ${external_link7}:extlink7
